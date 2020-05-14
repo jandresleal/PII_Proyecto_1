@@ -1,12 +1,10 @@
-using System;
-
 namespace Library
 {
     public class ChannelAdapterWhatsApp : IChannelAdapter
     {
-        private string userInput;
+        public string UserInput { get; set; }
 
-        private string answer;
+        public string Answer { get; set; }
 
         private bool finish;
 

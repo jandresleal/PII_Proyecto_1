@@ -4,7 +4,7 @@ Utilizamos una clase abstracta que implementa la interfaz dado que
 entendimos que todos los distintos tipos de formato que queramos
 dar o implementar en el futuro, seguirán ciertas condiciones básicas,
 es por esto, que sirve como una forma de reutilizar código, permitir
-la extensión y el mantenimiento. Se respeta el principio OCP
+la extensión y el mantenimiento. Se respeta el principio OCP.
 
 La única razón de cambio es recibir/modificar un mensaje. Con ese mensaje recibido
 se realiza primero el formateo del mismo (a la forma que se quiera, 
