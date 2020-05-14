@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace ProyectoBot
+namespace Library
 {
     public abstract class Property : IProperty
     {

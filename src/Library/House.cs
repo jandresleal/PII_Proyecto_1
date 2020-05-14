@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-
-namespace ProyectoBot
+namespace Library
 {
     public class House : Property
     {

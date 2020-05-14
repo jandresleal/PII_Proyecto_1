@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-
-namespace ProyectoBot
+namespace Library
 {
     public class Properties
     {
-        private IList<IProperty> properties; // = new List<IProperty>();
+        private IList<IProperty> properties; 
         public Properties()
         {
             this.properties = new List<IProperty>();
