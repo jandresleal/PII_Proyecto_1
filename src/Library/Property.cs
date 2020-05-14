@@ -11,6 +11,7 @@ namespace Library
         public bool Garden { get; set; }
         public bool SwimmingPool { get; set; }
         public bool Barbecue { get; set; }
+
         protected Property(string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue)
         {
             this.Neighborhood = neighborhood;
@@ -23,10 +24,5 @@ namespace Library
             this.SwimmingPool = swimmingPool;
             this.Barbecue = barbecue;
         }
-        public virtual void LoadProperty( string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue)
-        {
-
-        }
-
     }
 }

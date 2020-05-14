@@ -4,9 +4,9 @@ namespace Library
     {
         public IList<IFilter> Filters {get; set;}
 
-        public IList<IProperty> properties {get; set;}
+        public IList<IProperty> Properties {get; set;}
 
-        public String message {get; set;}
+        public String Message {get; set;}
 
         public virtual void GetItemsToPrint()
         {

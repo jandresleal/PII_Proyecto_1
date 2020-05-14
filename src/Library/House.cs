@@ -6,9 +6,5 @@ namespace Library
        {
 
        } 
-       public override void LoadProperty(string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue)
-       {
-           
-       }
     }
 }
