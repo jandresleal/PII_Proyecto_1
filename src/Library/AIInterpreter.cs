@@ -7,7 +7,7 @@ namespace Library
     {
         public override bool CheckForEmptyFilters()
         {
- 
+
         }
         public override void ParseInput(string input)
         {

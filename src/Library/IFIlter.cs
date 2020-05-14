@@ -4,7 +4,7 @@ namespace Library
 {
     public interface IFilter
     {
-        void CreateFilter()
+        void SetValues(string data)
         {
             
         }

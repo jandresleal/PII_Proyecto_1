@@ -2,7 +2,7 @@ namespace Library
 {
     public class Mediator1 : Mediator
     {
-        public Mediador1() : base() { }
+        public Mediator1() : base() { }
 
         public override void GetItemsToPrint()
         {
