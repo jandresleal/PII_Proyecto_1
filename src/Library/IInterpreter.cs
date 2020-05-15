@@ -17,5 +17,9 @@ namespace Library
         {
             
         }
+        void SendFiltersToMediator(string input)
+        {
+            
+        }
     }
 }

@@ -16,5 +16,13 @@ namespace Library
         {
             
         }
+        public override List<IFilter> CreateExtendedList(string input)
+        {
+           
+        }
+        public void SendFiltersToMediator(string input)
+        {
+
+        }
     }
 }

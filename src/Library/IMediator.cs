@@ -33,6 +33,11 @@ namespace Library
 
         }
 
+        IList<IProperty> CreateExtendedPropertyList(string data)
+        {
+
+        }
+
         string CreateTextToPrint(IList<IProperty> lista)
         {
 

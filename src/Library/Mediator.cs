@@ -9,6 +9,8 @@ namespace Library
 
         public IList<IProperty> Properties {get; set;}
 
+        public IList<IProperty> ExtendedProperties {get; set;}
+
         public string Message {get; set;}
 
         public virtual void GetItemsToPrint()
@@ -22,6 +24,10 @@ namespace Library
         }
 
         public IList<IProperty> CreatePropertyList(string data)
+        {
+
+        }
+        public IList<IProperty> CreateExtendedPropertyList(string data)
         {
 
         }

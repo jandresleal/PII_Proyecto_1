@@ -37,6 +37,8 @@ namespace Library
         
         private List<IFilter> filters = new List<IFilter>();
 
+        private List<IFilter> ExtendedRange = new List<IFilter>();
+
         public void AskQuestion()
         {
    
@@ -52,7 +54,12 @@ namespace Library
            
         }
 
-        public void FiltersToMediator()
+        public virtual List<IFilter> CreateExtendedList(string input)
+        {
+           
+        }
+
+        public void SendFiltersToMediator()
         {
 
         }
