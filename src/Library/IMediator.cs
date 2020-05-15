@@ -7,7 +7,7 @@ namespace Library
             
         }
 
-        string Search(APIsSearchEngines api)
+        string Search(IAPIsSearchEngines api)
         {
             
         }

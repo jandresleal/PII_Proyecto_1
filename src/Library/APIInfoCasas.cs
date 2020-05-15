@@ -1,8 +1,8 @@
 namespace Library
 {
-    public class APIInfoCasas : API
+    public class APIInfoCasas : IAPIsSearchEngines
     {
-        public override string AskAPI()
+        public string AskAPI(string toAsk)
         {
             
         }

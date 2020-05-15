@@ -9,14 +9,14 @@ namespace Library
 
         public IList<IProperty> Properties {get; set;}
 
-        public String Message {get; set;}
+        public string Message {get; set;}
 
         public virtual void GetItemsToPrint()
         {
             
         }
 
-        public string Search(APIsSearchEngines api)
+        public string Search(IAPIsSearchEngines api)
         {
 
         }
