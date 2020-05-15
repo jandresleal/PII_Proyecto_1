@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Library
 {
 
@@ -9,7 +11,7 @@ namespace Library
         {
 
         }
-        public override void ParseInput(string input)
+        public override List<IFilter> ParseInput(string input)
         {
             
         }

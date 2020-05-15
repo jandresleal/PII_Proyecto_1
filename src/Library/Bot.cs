@@ -17,7 +17,7 @@ namespace Library
     {
         public IList<IMediator> Mediators {get; set;}
 
-        public IMediator mediator AddMediator()
+        public IMediator AddMediator()
         {
             
         }

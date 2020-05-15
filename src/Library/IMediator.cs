@@ -12,6 +12,8 @@
     de Bajo Acoplamiento.
 
 */
+using System.Collections.Generic;
+
 namespace Library
 {
         public interface IMediator

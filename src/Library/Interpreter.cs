@@ -42,7 +42,7 @@ namespace Library
    
         }
 
-        public virtual bool CheckForEmptyFilters(string input)
+        public virtual bool CheckForEmptyFilters()
         {
            
         }

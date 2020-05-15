@@ -17,5 +17,10 @@ namespace Library
         {
 
         }
+
+        public string SetExtendedRange()
+        {
+
+        }
     }
 }
