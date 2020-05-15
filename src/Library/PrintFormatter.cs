@@ -33,11 +33,6 @@ namespace Library
             this.Message = message;
         }
 
-        public virtual void Print()
-        {
-
-        }
-
         public virtual void FormatMessage()
         {
 
