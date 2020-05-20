@@ -9,13 +9,14 @@
 
 */
 
-namespace Library
+using System.Collections.Generic;
+
+namespace Library.ApiSearchEngine
 {
     public interface IAPIsSearchEngines
     {
-        string AskAPI(string toAsk)
-        {
-            
-        }
+        string AskAPI(List<IFilter> filters);
+
+        List<IProperty> Parse(string data);
     }
 }

@@ -33,14 +33,9 @@ namespace Library
             this.Message = message;
         }
 
-        public virtual void FormatMessage()
+        public virtual string FormatMessage(string data)
         {
-
-        }
-
-        public void SendMessageToMediator()
-        {
-
+            return data;
         }
     }
 }
