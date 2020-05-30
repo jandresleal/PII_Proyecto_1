@@ -18,9 +18,6 @@ namespace Library
 
         }
 
-        public string SetExtendedRange()
-        {
-
-        }
+        public string SetExtendedRange { get; }
     }
 }

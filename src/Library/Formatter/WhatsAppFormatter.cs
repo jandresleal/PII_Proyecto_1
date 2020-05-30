@@ -5,9 +5,9 @@ namespace Library
 
         public WhatsAppFormatter(string message) : base(message) {}
 
-        public override void FormatMessage()
+        public override string FormatMessage(string data)
         {
-            
+            return data;
         }
     }
 }

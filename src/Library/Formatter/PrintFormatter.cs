@@ -20,6 +20,8 @@ y funciona sin efectos colaterales, podremos afirmarlo).
 
 */
 
+using System.Collections.Generic;
+
 namespace Library
 {
     public abstract class PrintFormatter : IPrintFormatter
@@ -36,6 +38,11 @@ namespace Library
         public virtual string FormatMessage(string data)
         {
             return data;
+        }
+
+        List<IProperty> IPrintFormatter.FormatMessage(string data)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
