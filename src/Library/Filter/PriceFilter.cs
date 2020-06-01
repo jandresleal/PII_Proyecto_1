@@ -1,23 +1,35 @@
+using System;
+
 namespace Library
 {
 
     public class PriceFilter : IFilter
     {
-
         public double MinPrice { get; set; }
         public double MaxPrice { get; set; }
+        public string ExtendedRange { get; }
 
-        public PriceFilter()
+        public PriceFilter(double minPrice, double maxPrice)
         {
-            this.MinPrice = 0;
-            this.MaxPrice = 0;
+            this.MinPrice = minPrice;
+            this.MaxPrice = maxPrice;
+            this.ExtendedRange = this.CalculateExtendedRange(minPrice,maxPrice);
         }
 
-        public void SetValues(string data)
+        public string GetValues()
         {
+            string result = string.Empty;
+            result += $"{this.MaxPrice},";
+            result += $"{this.MinPrice},";
+            result += $"{this.ExtendedRange}";
 
+            return result;
         }
 
-        public string SetExtendedRange { get; }
+        public string CalculateExtendedRange(double min, double max)
+        {
+            string result = $"{min * 0.8},{max * 1.25}";
+            return result;
+        }
     }
 }

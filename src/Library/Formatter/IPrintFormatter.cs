@@ -4,6 +4,6 @@ namespace Library
 {
     public interface IPrintFormatter
     {
-        List<IProperty> FormatMessage(string data);
+        string FormatMessage(List<IProperty> data);
     }
 }

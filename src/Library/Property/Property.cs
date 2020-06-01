@@ -15,7 +15,7 @@ por lo tanto cumple con el principio SRP y a su vez sigue el patrón Expert porq
 asigna la responsabilidad a la clase que tiene toda la información necesaria.
 */
 
-    public abstract class Property : IProperty
+    public class Property : IProperty
     {
         public string Neighborhood { get; set; }
         public int Rooms { get; set; }
@@ -26,8 +26,9 @@ asigna la responsabilidad a la clase que tiene toda la información necesaria.
         public bool Garden { get; set; }
         public bool SwimmingPool { get; set; }
         public bool Barbecue { get; set; }
+        public bool Gym { get; set; }
 
-        protected Property(string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue)
+        public Property(string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
         {
             this.Neighborhood = neighborhood;
             this.Rooms = rooms;
@@ -38,6 +39,7 @@ asigna la responsabilidad a la clase que tiene toda la información necesaria.
             this.Garden = garden;
             this.SwimmingPool = swimmingPool;
             this.Barbecue = barbecue;
+            this.Gym = gym;
         }
     }
 }

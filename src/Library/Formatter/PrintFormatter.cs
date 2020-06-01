@@ -20,6 +20,7 @@ y funciona sin efectos colaterales, podremos afirmarlo).
 
 */
 
+using System;
 using System.Collections.Generic;
 
 namespace Library
@@ -34,15 +35,10 @@ namespace Library
         {
             this.Message = message;
         }
-
-        public virtual string FormatMessage(string data)
+        public string FormatMessage(List<IProperty> data)
         {
-            return data;
-        }
-
-        List<IProperty> IPrintFormatter.FormatMessage(string data)
-        {
-            throw new System.NotImplementedException();
-        }
+            string result = string.Empty;
+            return result;
+        }       
     }
 }
