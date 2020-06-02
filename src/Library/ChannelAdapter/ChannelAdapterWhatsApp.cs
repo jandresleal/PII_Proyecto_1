@@ -10,21 +10,18 @@ namespace Library
 {
     public class ChannelAdapterWhatsApp : IChannelAdapter
     {
-        public string UserInput { get; set; }
 
-        public string Answer { get; set; }
+        public string UserInput(string Input)
+        {
+        
+        }
 
-        private bool finish;
-
-        public void SendTextToInterpreter(string data)
+        public void SendTextToUser(string toUser)
         {
             
         }
-        public void SendTextToUser(string data)
-        {
-            
-        }
-        public void EndMediator(bool finish)
+        
+        public bool EndMediator(string connection)
         {
             
         }

@@ -11,28 +11,14 @@
 
 */
 
-
 namespace Library
 {
     public interface IChannelAdapter
     {
-        string UserInput { get; set; }
+        string UserInput(string input);
 
-        string Answer { get; set; }
+        void SendTextToUser(string toUser);
 
-        void SendTextToMediator(string data)
-        {
-            
-        }
-
-        void SendTextToUser(string data)
-        {
-            
-        }
-
-        void EndMediator(bool finish)
-        {
-            
-        }
+        bool EndMediator(string connection);
     }
 }

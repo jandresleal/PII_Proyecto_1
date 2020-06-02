@@ -27,17 +27,41 @@ namespace Library
 {
     public abstract class PrintFormatter : IPrintFormatter
     {
-        public string Message { get; set; }
-
-        public string FormattedMessage { get; set; }
-
-        public PrintFormatter(string message)
+        public virtual string FormatMessage(List<IProperty> data)
         {
-            this.Message = message;
-        }
-        public string FormatMessage(List<IProperty> data)
-        {
-            string result = string.Empty;
+            string result = "Se listan las propiedades a continuación" + Environment.NewLine;
+
+            foreach (IProperty property in data)
+            {
+                result += $"La propiedad se encuentra en el barrio {property.Neighborhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
+
+                if (property.Garage == true)
+                {
+                    result += "Para su comodidad, la propiedad incluye garage.";
+                }
+                
+                else if (property.Barbecue == true)
+                {
+                    result += "A su vez, esta propiedad cuenta con barbacoa.";
+                }
+
+                else if (property.Garden == true)
+                {
+                    result += "Además, presenta un jardín ideal para unas tardes tomando mate.";
+                }
+
+                else if (property.Gym == true)
+                {
+                    result += "Asimismo, este dominio incluye un gimnasio completamente equipo.";
+                }
+
+                else if (property.SwimmingPool == true)
+                {
+                    result += "Y por si fuera poco, tiene piscina!";
+                }
+
+                result += Environment.NewLine;
+            }
             return result;
         }       
     }
