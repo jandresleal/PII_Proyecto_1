@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Library.ApiSearchEngine
+namespace Library
 {
     public class APIInfoCasas : IAPIsSearchEngines
     {

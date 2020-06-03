@@ -10,7 +10,6 @@ namespace Library
 {
     public class ChannelAdapterWhatsApp : IChannelAdapter
     {
-
         public string UserInput(string Input)
         {
             

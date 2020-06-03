@@ -30,45 +30,13 @@ namespace Library
 
     public abstract class Interpreter : IInterpreter
     {
-        public Interpreter()
+        public Interpreter(IMediator mediator)
         {
-            this.Filters = new List<IFilter>();
-            this.ExtendedFilters = new List<IFilter>();
-        }
-        
-        public List<IFilter> Filters { get; }
-
-        public List<IFilter> ExtendedFilters { get; }
-
-        public void AddFilter(IFilter filter)
-        {
-            Filters.Add(filter);
+            this.mediator = mediator;
         }
 
-        public void RemoveFilter(IFilter filter)
-        {
-            Filters.Remove(filter);
-        }
+        protected IMediator mediator;
 
-        public string AskQuestion()
-        {
-            return "Ingrese parámetros válidos con el fin de realizar su búsqueda";
-        }
-
-        public bool CheckForEmptyFilters()
-        {
-           if (Filters.Count == 0)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-        }
-
-        public abstract List<IFilter> ParseInput(string input);
-
-        public abstract List<IFilter> CreateExtendedList(string input);
+        public abstract void ParseInput(string input);
     }
 }
