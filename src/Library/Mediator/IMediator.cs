@@ -16,31 +16,37 @@ using System.Collections.Generic;
 
 namespace Library
 {
-        public interface IMediator
+    public interface IMediator
     {
-        void GetItemsToPrint()
-        {
-            
-        }
+        void AddPriceFilter(double min, double max);
 
-        string Search(IAPIsSearchEngines api)
-        {
-            
-        }
+        void AddNeighbourhoodFilter(string neighbourhood);
 
-        IList<IProperty> CreatePropertyList(string data)
-        {
+        void AddRoomsFilter(int number);
 
-        }
+        void AddBathsFilter(int number);
 
-        IList<IProperty> CreateExtendedPropertyList(string data)
-        {
+        void AddHabitableAreaFilter(double area);
 
-        }
+        void AddAreaFilter(double area);
 
-        string CreateTextToPrint(IList<IProperty> lista)
-        {
+        void AddGarageFilter(bool b1);
+    
+        void AddGardenFilter(bool b1);
 
-        }
+        void AddSwimmingPoolFilter(bool b1);
+
+        void AddBarbecueFilter(bool b1);
+
+        void AddGymFilter(bool b1);
+
+        void GetItemsToPrint();
+        string Search(IAPIsSearchEngines api);
+
+        IList<IProperty> CreatePropertyList(string data);
+
+        IList<IProperty> CreateExtendedPropertyList(string data);
+
+        string CreateTextToPrint(IList<IProperty> lista);
     }
 }

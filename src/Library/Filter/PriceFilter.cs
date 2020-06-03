@@ -18,11 +18,15 @@ namespace Library
 
         public string GetValues()
         {
-            string result = string.Empty;
-            result += $"{this.MaxPrice},";
+            string result = $"{this.MaxPrice},";
             result += $"{this.MinPrice},";
-            result += $"{this.ExtendedRange}";
+            
+            return result;
+        }
 
+        public string GetExtendedRangeValue()
+        {
+            string result = $"{this.ExtendedRange}";
             return result;
         }
 

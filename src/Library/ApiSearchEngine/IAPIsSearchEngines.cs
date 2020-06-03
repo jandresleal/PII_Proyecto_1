@@ -11,7 +11,7 @@
 
 using System.Collections.Generic;
 
-namespace Library.ApiSearchEngine
+namespace Library
 {
     public interface IAPIsSearchEngines
     {

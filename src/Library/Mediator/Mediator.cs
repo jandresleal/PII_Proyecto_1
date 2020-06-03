@@ -12,6 +12,61 @@ namespace Library
 
         private Database database { get; }
 
+        public void AddPriceFilter(double min, double max)
+        {
+            database.AddPriceFilter(min, max);
+        }
+
+        public void AddNeighbourhoodFilter(string neighbourhood)
+        {
+            database.AddNeighbourhoodFilter(neighbourhood));
+        }
+
+        public void AddRoomsFilter(int number)
+        {
+            database.AddRoomsFilter(number);
+        }
+
+        public void AddBathsFilter(int number)
+        {
+            database.AddBathsFilter(number);
+        }
+
+        public void AddHabitableAreaFilter(double area)
+        {
+            database.AddHabitableAreaFilter(area);
+        }
+
+        public void AddAreaFilter(double area)
+        {
+            database.AddAreaFilter(area);
+        }
+
+        public void AddGarageFilter(bool b1)
+        {
+            database.AddGarageFilter(b1);
+        }
+    
+        public void AddGardenFilter(bool b1)
+        {
+            database.AddGardenFilter(b1);
+        }
+
+        public void AddSwimmingPoolFilter(bool b1)
+        {
+            database.AddSwimmingPoolFilter(b1);
+        }
+
+        public void AddBarbecueFilter(bool b1)
+        {
+            database.AddBarbecueFilter(b1);
+        }
+
+        public void AddGymFilter(bool b1)
+        {
+            database.AddGymFilter(b1);
+        }
+
         public virtual void GetItemsToPrint()
         {
             
@@ -20,22 +75,6 @@ namespace Library
         public string Search(IAPIsSearchEngines api)
         {
             return IAPIsSearchEngines.AskAPI(database.Filters);
-        }
-
-        public void CreateFiltersList(string input)
-        {
-            Interpreter interpreter = new SimpleInterpreter();
-
-            interpreter.ParseInput(input);
-
-            if (interpreter.CheckForEmptyFilters())
-            {
-                SendInfoToAdapter("Por favor, introduzca parámetros válidos para la búsqueda.");
-            }
-            else
-            {
-                database.Filters = interpreter.Filters;
-            }
         }
 
         public void CreatePropertyList(IAPIsSearchEngines api)

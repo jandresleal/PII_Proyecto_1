@@ -25,9 +25,9 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public abstract class PrintFormatter : IPrintFormatter
+    public class PrintFormatter : IPrintFormatter
     {
-        public virtual string FormatMessage(List<IProperty> data)
+        public string FormatMessage(List<IProperty> data)
         {
             string result = "Se listan las propiedades a continuación" + Environment.NewLine;
 
