@@ -5,6 +5,10 @@ namespace Library
 
     public class AIInterpreter : Interpreter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public AIInterpreter() : base() {}
 
         public override bool CheckForEmptyFilters()

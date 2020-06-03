@@ -4,6 +4,10 @@ namespace Library
 {
     public class Database
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         public List<IFilter> Filters {get; set;}
 
         public List<IProperty> Properties {get; set;}

@@ -5,6 +5,10 @@ namespace Library
 {
     public interface IInterpreter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filter"></param>
         void AddFilter(IFilter filter);
 
         void RemoveFilter(IFilter filter);

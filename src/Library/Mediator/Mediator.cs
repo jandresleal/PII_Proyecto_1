@@ -5,6 +5,10 @@ namespace Library
 {
     public class Mediator : IMediator
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="adapter"></param>
         public Mediator(IChannelAdapter adapter)
         {
             this.database = new Database(adapter);

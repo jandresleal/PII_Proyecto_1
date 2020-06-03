@@ -2,6 +2,12 @@ namespace Library
 {
     public class GardenFilter : IFilter
     {
+        /// <summary>
+        ///  Filtro independiente creado únicamente para Garden
+        
+        /// Cada filtro, respeta SRP dado que tiene una única razón
+        /// para su cambio, cuando se modifican sus atributos.
+        /// </summary>
         private bool value;
 
         public GardenFilter(bool b1)

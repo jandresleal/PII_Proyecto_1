@@ -5,6 +5,9 @@ namespace Library.Test
 {
     public class TestMediator
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [Test]
         public void TestGetItemsToPrint()
         {

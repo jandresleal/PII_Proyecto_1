@@ -5,6 +5,10 @@ namespace Library
 
     public class PriceFilter : IFilter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         public double MinPrice { get; set; }
         public double MaxPrice { get; set; }
         public string ExtendedRange { get; }
