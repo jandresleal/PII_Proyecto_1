@@ -1,25 +1,20 @@
+using System.Collections.Generic;
+using System;
+
 namespace Library
 {
-
     public interface IInterpreter
     {
-        void AskQuestion()
-        {
-            
-        }
+        void AddFilter(IFilter filter);
 
-        bool CheckForEmptyFilters(string input)
-        {
-            
-        }
+        void RemoveFilter(IFilter filter);
 
-        void ParseInput(string input)
-        {
-            
-        }
-        void SendFiltersToMediator(string input)
-        {
-            
-        }
+        string AskQuestion();
+
+        bool CheckForEmptyFilters();
+
+        List<IFilter> ParseInput(string input);
+
+        List<IFilter> CreateExtendedList(string input);
     }
 }

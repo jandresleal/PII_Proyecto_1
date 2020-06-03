@@ -32,36 +32,43 @@ namespace Library
     {
         public Interpreter()
         {
-
+            this.Filters = new List<IFilter>();
+            this.ExtendedFilters = new List<IFilter>();
         }
         
-        private List<IFilter> filters = new List<IFilter>();
+        public List<IFilter> Filters { get; }
 
-        private List<IFilter> ExtendedRange = new List<IFilter>();
+        public List<IFilter> ExtendedFilters { get; }
 
-        public void AskQuestion()
+        public void AddFilter(IFilter filter)
         {
-   
+            Filters.Add(filter);
         }
 
-        public virtual bool CheckForEmptyFilters()
+        public void RemoveFilter(IFilter filter)
         {
-           
+            Filters.Remove(filter);
         }
 
-        public virtual List<IFilter> ParseInput(string input)
+        public string AskQuestion()
         {
-           
+            return "Ingrese parámetros válidos con el fin de realizar su búsqueda";
         }
 
-        public virtual List<IFilter> CreateExtendedList(string input)
+        public bool CheckForEmptyFilters()
         {
-           
+           if (Filters.Count == 0)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
         }
 
-        public void SendFiltersToMediator()
-        {
+        public abstract List<IFilter> ParseInput(string input);
 
-        }
+        public abstract List<IFilter> CreateExtendedList(string input);
     }
 }

@@ -13,8 +13,15 @@ namespace Library.ApiSearchEngine
             {
                 // el método get values devuelve un string con el valor de cada atributo del filtro
                 // en este caso como no sabemos cómo tenemos que pedir la información
-                // simplemente 
-                ask += filter.GetValues();
+                // simplemente
+                if (ask != string.Empty)
+                {
+                    ask += "," + filter.GetValues();
+                }
+                else
+                {
+                    ask += filter.GetValues();
+                } 
             }
             // aquí preguntaríamos a la api en base al ask creado
 
@@ -40,16 +47,17 @@ namespace Library.ApiSearchEngine
             {
                 string[] atributes = x.Split(",");
                 properties.Add(new Property(
-                    atributes[0],
-                    Int32.Parse(atributes[1]),
+                    Int32.Parse(atributes[0]),
+                    atributes[1],
                     Int32.Parse(atributes[2]),
-                    double.Parse(atributes[3]),
+                    Int32.Parse(atributes[3]),
                     double.Parse(atributes[4]),
-                    bool.Parse(atributes[5]),
+                    double.Parse(atributes[5]),
                     bool.Parse(atributes[6]),
                     bool.Parse(atributes[7]),
                     bool.Parse(atributes[8]),
-                    bool.Parse(atributes[9])
+                    bool.Parse(atributes[9]),
+                    bool.Parse(atributes[10])
                 ));
             }
             return properties;

@@ -17,19 +17,31 @@ asigna la responsabilidad a la clase que tiene toda la información necesaria.
 
     public class Property : IProperty
     {
-        public string Neighborhood { get; set; }
-        public int Rooms { get; set; }
-        public int Baths { get; set; }
-        public double HabitableArea { get; set; }
-        public double Area { get; set; }
-        public bool Garage { get; set; }
-        public bool Garden { get; set; }
-        public bool SwimmingPool { get; set; }
-        public bool Barbecue { get; set; }
-        public bool Gym { get; set; }
+        public double Price { get; }
 
-        public Property(string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
+        public string Neighborhood { get; }
+        
+        public int Rooms { get; }
+
+        public int Baths { get; }
+        
+        public double HabitableArea { get; }
+
+        public double Area { get; }
+
+        public bool Garage { get; }
+
+        public bool Garden { get; }
+
+        public bool SwimmingPool { get; }
+
+        public bool Barbecue { get; }
+        
+        public bool Gym { get; }
+
+        public Property(double price, string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
         {
+            this.Price = price;
             this.Neighborhood = neighborhood;
             this.Rooms = rooms;
             this.Baths = baths;

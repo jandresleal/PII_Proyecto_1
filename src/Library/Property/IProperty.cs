@@ -2,24 +2,26 @@ namespace Library
 {
     public interface IProperty
     {
-        string Neighborhood { get; set; }
+        double Price { get; }
 
-        int Rooms { get; set; }
+        string Neighborhood { get; }
 
-        int Baths { get; set; }
+        int Rooms { get; }
 
-        double HabitableArea { get; set; }
+        int Baths { get; }
 
-        double Area { get; set; }
+        double HabitableArea { get; }
 
-        bool Garage { get; set; }
+        double Area { get; }
 
-        bool Garden { get; set; }
+        bool Garage { get; }
 
-        bool SwimmingPool { get; set; }
+        bool Garden { get; }
 
-        bool Barbecue { get; set; }
+        bool SwimmingPool { get; }
 
-        bool Gym { get; set; }
+        bool Barbecue { get; }
+
+        bool Gym { get; }
     }
 }

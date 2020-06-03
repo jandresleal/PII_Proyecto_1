@@ -12,12 +12,15 @@ namespace Library
 
         public string Result {get; set;}
 
-        public Database()
+        public IChannelAdapter Adapter { get; }
+
+        public Database(IChannelAdapter adapter)
         {
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
             this.ExtendedProperties = new List<IProperty>();
+            this.Adapter = adapter;
         }
     }
 }

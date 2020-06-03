@@ -15,16 +15,16 @@ namespace Library
 {
     public class Bot
     {
-        public IList<IMediator> Mediators {get; set;}
+        public List<IMediator> Mediators { get; set; }
 
-        public IMediator AddMediator()
+        public void AddMediator(IChannelAdapter adapter)
         {
-            
+            Mediators.Add(new Mediator(adapter));
         }
 
         public void RemoveMediator(IMediator mediator)
         {
-
+            Mediators.Remove(mediator);
         }
     }
 }

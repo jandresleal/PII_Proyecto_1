@@ -3,11 +3,11 @@ using Library.ApiSearchEngine;
 
 namespace Library
 {
-    public abstract class Mediator : IMediator
+    public class Mediator : IMediator
     {
-        public Mediator()
+        public Mediator(IChannelAdapter adapter)
         {
-            this.database = new Database();
+            this.database = new Database(adapter);
         }
 
         private Database database { get; }
@@ -22,9 +22,25 @@ namespace Library
             return IAPIsSearchEngines.AskAPI(database.Filters);
         }
 
+        public void CreateFiltersList(string input)
+        {
+            Interpreter interpreter = new SimpleInterpreter();
+
+            interpreter.ParseInput(input);
+
+            if (interpreter.CheckForEmptyFilters())
+            {
+                SendInfoToAdapter("Por favor, introduzca parámetros válidos para la búsqueda.");
+            }
+            else
+            {
+                database.Filters = interpreter.Filters;
+            }
+        }
+
         public void CreatePropertyList(IAPIsSearchEngines api)
         {
-            database.ExtendedProperties = api.Parse(Search(api))
+            database.ExtendedProperties = api.Parse(Search(api));
         }
         public void CreateExtendedPropertyList(string data)
         {
@@ -36,9 +52,14 @@ namespace Library
             database.Result = formatter.FormatMessage(database.Properties);
         }
 
-        public void SendSearchResults(IChannelAdapter adapter)
+        public void SendInfoToAdapter()
         {
-            adapter.SendTextToUser(database.Result);
+            database.Adapter.SendTextToUser(database.Result);
+        }
+
+        public void SendInfoToAdapter(string question)
+        {
+            database.Adapter.SendTextToUser(question);
         }
     }
 }
