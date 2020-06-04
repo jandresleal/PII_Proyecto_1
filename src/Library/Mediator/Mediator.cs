@@ -8,9 +8,9 @@ namespace Library
         /// 
         /// </summary>
         /// <param name="adapter"></param>
-        public Mediator(IChannelAdapter adapter)
+        public Mediator()
         {
-            this.database = new Database(adapter);
+            this.database = new Database();
         }
 
         private Database database { get; }
