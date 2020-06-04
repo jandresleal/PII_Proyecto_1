@@ -4,7 +4,7 @@ namespace Library
     {
         double Price { get; }
 
-        string Neighborhood { get; }
+        string Neighbourhood { get; }
 
         int Rooms { get; }
 

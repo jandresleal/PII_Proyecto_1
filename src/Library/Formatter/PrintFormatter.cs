@@ -33,7 +33,7 @@ namespace Library
 
             foreach (IProperty property in data)
             {
-                result += $"La propiedad se encuentra en el barrio {property.Neighborhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
+                result += $"La propiedad se encuentra en el barrio {property.Neighbourhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
 
                 if (property.Garage == true)
                 {

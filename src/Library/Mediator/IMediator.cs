@@ -40,13 +40,10 @@ namespace Library
 
         void AddGymFilter(bool b1);
 
-        void GetItemsToPrint();
-        string Search(IAPIsSearchEngines api);
+        void AddProperty(double price, string neighbourhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym);
 
-        IList<IProperty> CreatePropertyList(string data);
+        void Search(IAPIsSearchEngines api);
 
-        IList<IProperty> CreateExtendedPropertyList(string data);
-
-        string CreateTextToPrint(IList<IProperty> lista);
+        void CreateTextToPrint(IPrintFormatter formatter);
     }
 }

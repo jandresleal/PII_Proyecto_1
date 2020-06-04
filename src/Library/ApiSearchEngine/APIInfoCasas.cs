@@ -5,6 +5,13 @@ namespace Library
 {
     public class APIInfoCasas : IAPIsSearchEngines
     {
+        public APIInfoCasas(IMediator mediator)
+        {   
+            this.mediator = mediator;
+        }
+
+        private IMediator mediator;
+
         public string AskAPI(List<IFilter> filters)
         {
             string ask = string.Empty;
@@ -46,7 +53,8 @@ namespace Library
             foreach (string x in objects)
             {
                 string[] atributes = x.Split(",");
-                properties.Add(new Property(
+                
+                mediator.AddProperty(
                     Int32.Parse(atributes[0]),
                     atributes[1],
                     Int32.Parse(atributes[2]),
@@ -58,7 +66,7 @@ namespace Library
                     bool.Parse(atributes[8]),
                     bool.Parse(atributes[9]),
                     bool.Parse(atributes[10])
-                ));
+                );
             }
             return properties;
         }

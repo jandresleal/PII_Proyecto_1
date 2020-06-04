@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Library.ApiSearchEngine;
 
 namespace Library
 {
@@ -19,7 +18,7 @@ namespace Library
 
         public void AddNeighbourhoodFilter(string neighbourhood)
         {
-            database.AddNeighbourhoodFilter(neighbourhood));
+            database.AddNeighbourhoodFilter(neighbourhood);
         }
 
         public void AddRoomsFilter(int number)
@@ -67,33 +66,34 @@ namespace Library
             database.AddGymFilter(b1);
         }
 
-        public virtual void GetItemsToPrint()
+        public void AddProperty(
+            double price, 
+            string neighbourhood, 
+            int rooms, int baths, 
+            double habitableArea, 
+            double area, 
+            bool garage, 
+            bool garden, 
+            bool swimmingPool, 
+            bool barbecue, 
+            bool gym)
         {
-            
+            database.AddProperty(price, neighbourhood, rooms, baths, habitableArea, area, garage, garden, swimmingPool, barbecue, gym);
         }
 
-        public string Search(IAPIsSearchEngines api)
+        public void Search(IAPIsSearchEngines api)
         {
-            return IAPIsSearchEngines.AskAPI(database.Filters);
-        }
-
-        public void CreatePropertyList(IAPIsSearchEngines api)
-        {
-            database.ExtendedProperties = api.Parse(Search(api));
-        }
-        public void CreateExtendedPropertyList(string data)
-        {
-            database.ExtendedProperties = 
+            api.AskAPI(database.GetFilters());
         }
 
         public void CreateTextToPrint(IPrintFormatter formatter)
         {
-            database.Result = formatter.FormatMessage(database.Properties);
+            database.SetResult(formatter.FormatMessage(database.GetPropertyList()));
         }
 
         public void SendInfoToAdapter()
         {
-            database.Adapter.SendTextToUser(database.Result);
+            database.Adapter.SendTextToUser(database.SendResult());
         }
 
         public void SendInfoToAdapter(string question)

@@ -8,9 +8,7 @@ namespace Library
 
         public List<IProperty> Properties { get; }
 
-        public List<IProperty> ExtendedProperties { get; }
-
-        public string Result { get; }
+        public string Result { get; private set; }
 
         public IChannelAdapter Adapter { get; }
 
@@ -19,7 +17,6 @@ namespace Library
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
-            this.ExtendedProperties = new List<IProperty>();
             this.Adapter = adapter;
         }
 
@@ -76,6 +73,54 @@ namespace Library
         public void AddGymFilter(bool b1)
         {
             Filters.Add(new GymFilter(b1));
+        }
+
+        public void AddProperty(
+            double price, 
+            string neighbourhood, 
+            int rooms, 
+            int baths, 
+            double habitableArea, 
+            double area, 
+            bool garage, 
+            bool garden, 
+            bool swimmingPool, 
+            bool barbecue, 
+            bool gym)
+        {
+            Properties.Add(new Property(
+                price,
+                neighbourhood,
+                rooms,
+                baths,
+                habitableArea,
+                area,
+                garage,
+                garden,
+                swimmingPool,
+                barbecue,
+                gym
+            ));
+        }
+
+        public void SetResult(string data)
+        {
+            this.Result = data;
+        }
+
+        public string SendResult()
+        {
+            return Result;
+        }
+
+        public List<IProperty> GetPropertyList()
+        {
+            return Properties;
+        }
+
+        public List<IFilter> GetFilters()
+        {
+            return Filters;
         }
     }
 }

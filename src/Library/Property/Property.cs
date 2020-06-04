@@ -19,7 +19,7 @@ asigna la responsabilidad a la clase que tiene toda la información necesaria.
     {
         public double Price { get; }
 
-        public string Neighborhood { get; }
+        public string Neighbourhood { get; }
         
         public int Rooms { get; }
 
@@ -39,10 +39,10 @@ asigna la responsabilidad a la clase que tiene toda la información necesaria.
         
         public bool Gym { get; }
 
-        public Property(double price, string neighborhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
+        public Property(double price, string neighbourhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
         {
             this.Price = price;
-            this.Neighborhood = neighborhood;
+            this.Neighbourhood = neighbourhood;
             this.Rooms = rooms;
             this.Baths = baths;
             this.HabitableArea = habitableArea;
