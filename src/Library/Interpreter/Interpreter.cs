@@ -10,13 +10,8 @@ namespace Library
 
     public abstract class Interpreter : IInterpreter
     {
-        public Interpreter(IMediator mediator)
-        {
-            this.mediator = mediator;
-        }
+        public Interpreter() {  }
 
-        protected IMediator mediator;
-
-        public abstract void ParseInput(string input);
+        public abstract void ParseInput(string input, IMediator mediator, Database database);
     }
 }

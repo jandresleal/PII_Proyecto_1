@@ -2,9 +2,9 @@ namespace Library
 {
     public class AreaFilter : IFilter
     {
-        private double  value;
+        private int  value;
 
-        public AreaFilter(double number)
+        public AreaFilter(int number)
         {
             this.value = number;
         }

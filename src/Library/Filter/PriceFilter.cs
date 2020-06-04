@@ -12,11 +12,11 @@ namespace Library
         /// para su cambio, cuando se modifican sus atributos.
         /// </summary>
         /// <value></value>
-        public double MinPrice { get; set; }
-        public double MaxPrice { get; set; }
+        public int MinPrice { get; set; }
+        public int MaxPrice { get; set; }
         public string ExtendedRange { get; }
 
-        public PriceFilter(double minPrice, double maxPrice)
+        public PriceFilter(int minPrice, int maxPrice)
         {
             this.MinPrice = minPrice;
             this.MaxPrice = maxPrice;
@@ -26,7 +26,7 @@ namespace Library
         public string GetValues()
         {
             string result = $"{this.MaxPrice},";
-            result += $"{this.MinPrice},";
+            result += $"{this.MinPrice}";
             
             return result;
         }
