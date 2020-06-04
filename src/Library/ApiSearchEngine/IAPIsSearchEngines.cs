@@ -15,6 +15,6 @@ namespace Library
         /// <returns></returns>
         string AskAPI(List<IFilter> filters);
 
-        List<IProperty> Parse(string data);
+        void Parse(string data, IMediator mediator, Database database);
     }
 }
