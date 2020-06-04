@@ -2,6 +2,10 @@ namespace Library
 {
     public interface IProperty
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
         double Price { get; }
 
         string Neighbourhood { get; }
