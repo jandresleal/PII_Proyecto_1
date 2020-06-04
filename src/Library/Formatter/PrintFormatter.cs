@@ -18,7 +18,7 @@ namespace Library
         /// métodos que pueden verse sobrescritos. Por esta razón, se respeta el
         /// principio SRP y también se sigue el patrón Expert.
 
-        /// Además, implementamos método FormatMessage() polimórfico dado que dependiendo
+        /// Además, implementamos el método FormatMessage() polimórfico dado que dependiendo
         /// de la superclase se verán distintos resultados a mismo método. Se sigue el patrón
         /// polymorphism. Como este método al ser implementado no deberá de producir efectos
         /// colaterales, esperamos que se respete el principio LSP (cuando lo implementemos efectivamente

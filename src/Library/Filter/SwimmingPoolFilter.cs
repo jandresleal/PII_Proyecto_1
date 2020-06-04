@@ -3,7 +3,7 @@ namespace Library
     public class SwimmingPoolFilter : IFilter
     {
         /// <summary>
-        ///
+        /// Filtro independiente creado únicamente para SwimmingPool
         
         /// Cada filtro, respeta SRP dado que tiene una única razón
         /// para su cambio, cuando se modifican sus atributos.  
