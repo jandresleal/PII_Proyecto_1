@@ -16,12 +16,11 @@ namespace Library
 
         public IChannelAdapter Adapter { get; }
 
-        public Database(IChannelAdapter adapter)
+        public Database()
         {
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
-            this.Adapter = adapter;
         }
 
         public void AddPriceFilter(double min, double max)

@@ -15,9 +15,9 @@ namespace Library
         /// <value></value>
         public List<IMediator> Mediators { get; set; }
 
-        public void AddMediator(IChannelAdapter adapter)
+        public void AddMediator()
         {
-            Mediators.Add(new Mediator(adapter));
+            Mediators.Add(new Mediator());
         }
 
         public void RemoveMediator(IMediator mediator)
