@@ -12,7 +12,7 @@ namespace Library
     {
         public string UserInput(string Input)
         {
-            
+            return "";
         }
 
         public void SendTextToUser(string toUser)
@@ -22,7 +22,7 @@ namespace Library
         
         public bool EndMediator(string connection)
         {
-            
+            return false;
         }
     }
 }
