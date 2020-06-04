@@ -6,7 +6,7 @@ namespace Library
         /// 
         /// </summary>
         /// <value></value>
-        double Price { get; }
+        int Price { get; }
 
         string Neighbourhood { get; }
 
@@ -14,9 +14,9 @@ namespace Library
 
         int Baths { get; }
 
-        double HabitableArea { get; }
+        int HabitableArea { get; }
 
-        double Area { get; }
+        int Area { get; }
 
         bool Garage { get; }
 
@@ -27,5 +27,7 @@ namespace Library
         bool Barbecue { get; }
 
         bool Gym { get; }
+
+        string GetPropertyValues();
     }
 }

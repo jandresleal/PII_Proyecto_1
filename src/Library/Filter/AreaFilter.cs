@@ -8,9 +8,9 @@ namespace Library
         /// Cada filtro, respeta SRP dado que tiene una única razón
         /// para su cambio, cuando se modifican sus atributos.
         /// </summary>
-        private double  value;
+        private int  value;
 
-        public AreaFilter(double number)
+        public AreaFilter(int number)
         {
             this.value = number;
         }

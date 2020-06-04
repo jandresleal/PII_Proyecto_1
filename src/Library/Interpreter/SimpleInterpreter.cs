@@ -6,9 +6,9 @@ namespace Library
 
     public class SimpleInterpreter : Interpreter
     {
-        public SimpleInterpreter(Mediator mediator) : base(mediator) {}
+        public SimpleInterpreter() : base() {}
 
-        public override void ParseInput(string input)
+        public override void ParseInput(string input, IMediator mediator, Database database)
         {
             string[] entrada = input.Split(",");
 
@@ -19,60 +19,60 @@ namespace Library
                 if (x.Contains("Price"))
                 {
                     string[] splitted = x.Split("-");
-                    mediator.AddPriceFilter(Int32.Parse(splitted[1]),Int32.Parse(splitted[2]));
+                    mediator.AddPriceFilter(Int32.Parse(splitted[1]),Int32.Parse(splitted[2]),database);
                 }
 
                 else if (neighbourhoods.Contains(x))
                 {
-                    mediator.AddNeighbourhoodFilter(x);
+                    mediator.AddNeighbourhoodFilter(x,database);
                 }
 
                 else if (x.Contains("Rooms"))
                 {
                     string[] splitted = x.Split("-");
-                    mediator.AddRoomsFilter(Int32.Parse(splitted[1]));
+                    mediator.AddRoomsFilter(Int32.Parse(splitted[1]),database);
                 }
                 
                 else if (x.Contains("Baths"))
                 {
                     string[] splitted = x.Split("-");
-                    mediator.AddBathsFilter(Int32.Parse(splitted[1]));
+                    mediator.AddBathsFilter(Int32.Parse(splitted[1]),database);
                 }
 
                 else if (x.Contains("HabitableArea"))
                 {
                     string[] splitted = x.Split("-");
-                    mediator.AddHabitableAreaFilter(double.Parse(splitted[1]));
+                    mediator.AddHabitableAreaFilter(Int32.Parse(splitted[1]),database);
                 }
                 
                 else if (x.Contains("Area"))
                 {
                     string[] splitted = x.Split("-");
-                    mediator.AddAreaFilter(double.Parse(splitted[1]));
+                    mediator.AddAreaFilter(Int32.Parse(splitted[1]),database);
                 }
                 
                 else if (x.Contains("Garage"))
                 {
-                    mediator.AddGarageFilter(bool.Parse(x));
+                    mediator.AddGarageFilter(bool.Parse(x),database);
                 }
 
                 else if (x.Contains("Garden"))
                 {
-                    mediator.AddGardenFilter(bool.Parse(x));
+                    mediator.AddGardenFilter(bool.Parse(x),database);
                 }
 
                 else if (x.Contains("SwimmingPool"))
                 {
-                    mediator.AddSwimmingPoolFilter(bool.Parse(x));
+                    mediator.AddSwimmingPoolFilter(bool.Parse(x),database);
                 }
                 else if (x.Contains("Barbecue"))
                 {
-                    mediator.AddBarbecueFilter(bool.Parse(x));
+                    mediator.AddBarbecueFilter(bool.Parse(x),database);
                 }
                 
                 else if (x.Contains("Gym"))
                 {
-                    mediator.AddGymFilter(bool.Parse(x));
+                    mediator.AddGymFilter(bool.Parse(x),database);
                 } 
             }
         }

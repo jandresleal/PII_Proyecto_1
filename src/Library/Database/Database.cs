@@ -23,7 +23,7 @@ namespace Library
             this.Properties = new List<IProperty>();
         }
 
-        public void AddPriceFilter(double min, double max)
+        public void AddPriceFilter(int min, int max)
         {
             Filters.Add(new PriceFilter(min, max));
         }
@@ -43,12 +43,12 @@ namespace Library
             Filters.Add(new BathsFilter(number));
         }
 
-        public void AddHabitableAreaFilter(double area)
+        public void AddHabitableAreaFilter(int area)
         {
             Filters.Add(new HabitableAreaFilter(area));
         }
 
-        public void AddAreaFilter(double area)
+        public void AddAreaFilter(int area)
         {
             Filters.Add(new AreaFilter(area));
         }
@@ -79,12 +79,12 @@ namespace Library
         }
 
         public void AddProperty(
-            double price, 
+            int price, 
             string neighbourhood, 
             int rooms, 
             int baths, 
-            double habitableArea, 
-            double area, 
+            int habitableArea, 
+            int area, 
             bool garage, 
             bool garden, 
             bool swimmingPool, 

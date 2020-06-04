@@ -8,9 +8,10 @@ namespace Library
         /// Cada filtro, respeta SRP dado que tiene una única razón
         /// para su cambio, cuando se modifican sus atributos.
         /// </summary>
-        private double value;
 
-        public HabitableAreaFilter(double number)
+        private int value;
+
+        public HabitableAreaFilter(int number)
         {
             this.value = number;
         }
