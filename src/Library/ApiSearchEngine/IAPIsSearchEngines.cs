@@ -13,6 +13,7 @@ namespace Library
         /// </summary>
         /// <param name="filters"></param>
         /// <returns></returns>
+        
         string AskAPI(List<IFilter> filters);
 
         void Parse(string data, IMediator mediator, Database database);
