@@ -66,7 +66,7 @@ namespace Library.Test
 
             result += $"La propiedad se encuentra en el barrio {property2.Neighbourhood} y cuenta con: {property2.Rooms} dormitorios, {property2.Baths} baños, cuenta con {property2.HabitableArea} metros cuadrados construidos y su terreno consiste de {property2.Area} metros cuadradros.";
 
-            result += " Para su comodidad, la propiedad incluye garage.";
+            result += " Para su comodidad, la propiedad incluye garaje.";
 
             result += " A su vez, esta propiedad cuenta con barbacoa.";
 
