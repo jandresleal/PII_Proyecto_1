@@ -13,9 +13,8 @@ namespace Library
         /// clases que heredan.
 
         /// Se cumple con el principio OCP debido a que se reutiliza código con
-        /// las clases herederas (ver AskQuestion() que será igual en todas) y
-        /// también es extensible dado que podemos agregar nuevos interpretes
-        /// sin modificar las clases existentes
+        /// las clases herederas y también es extensible dado que podemos agregar
+        /// nuevos interpretes sin modificar las clases existentes.
 
         /// Interpreter es quien instancia a todos los filtros y como es quien
         /// realiza la interpretación de la entrada del cliente, conoce todos
