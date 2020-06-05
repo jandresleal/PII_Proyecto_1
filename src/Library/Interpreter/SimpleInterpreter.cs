@@ -5,6 +5,10 @@ namespace Library
 {
     public class SimpleInterpreter : Interpreter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public SimpleInterpreter() : base() {}
         /// <summary>
         /// El método ParseInput se encarga de interpretar el texto y fijarse si encuentra los diferentes filtros.
