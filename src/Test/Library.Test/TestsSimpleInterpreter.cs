@@ -6,7 +6,7 @@ namespace Library.Test
     public class TestsSimpleInterpreter
     {
         /// <summary>
-        /// 
+        /// Tests para SimpleInterpreter
         /// </summary>
         [Test]
         public void TestParseInputMultiplesFiltros()

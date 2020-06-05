@@ -5,7 +5,7 @@ namespace Library.Test
     public class TestDatabase
     {
         /// <summary>
-        /// 
+        /// Aquí se realizan los tests correspondientes a Database
         /// </summary>
         [Test]
         public void TestAddPriceFilter()
