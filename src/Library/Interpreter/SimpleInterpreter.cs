@@ -6,6 +6,10 @@ namespace Library
 
     public class SimpleInterpreter : Interpreter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public SimpleInterpreter() : base() {}
 
         public override void ParseInput(string input, IMediator mediator, Database database)
