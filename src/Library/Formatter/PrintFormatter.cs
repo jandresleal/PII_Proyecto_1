@@ -6,7 +6,7 @@ namespace Library
     public class PrintFormatter : IPrintFormatter
     {
         /// <summary>
-        /// Utilizamos una clase que implementa la interfaz dado que
+        /// La clase PrintFormatter implementa la interfaz dado que
         /// entendimos que todos los distintos tipos de formato que queramos
         /// dar o implementar en el futuro, seguirán ciertas condiciones básicas,
         /// es por esto, que sirve como una forma de reutilizar código, permitir
