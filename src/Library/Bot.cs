@@ -5,6 +5,9 @@ namespace Library
     public class Bot
     {
         /// <summary>
+        /// La clase bot será modificada en la próxima iteración. Tenemos pensado implementar
+        /// una clase Session y realizar algunos cambios.   
+        ///  
         /// La clase bot contiene una lista con todas las instancias Mediator que están activas,
         /// y las crea y destruye durante el funcionamiento, por lo que es un Creator de esta clase,
         /// y además es un Expert de ellos, pues los conoce y maneja.
@@ -13,13 +16,18 @@ namespace Library
         /// de esa lista. 
         /// </summary>
         /// <value></value>
-        public List<IMediator> Mediators { get; set; }
-
+        public List<IMediator> Mediators { get; set; } 
+        /// <summary>
+        /// Crea una instancia de Mediator
+        /// </summary>
         public void AddMediator()
         {
             Mediators.Add(new Mediator());
         }
-
+        /// <summary>
+        /// Elimina la instancia de Mediator
+        /// </summary>
+        /// <param name="mediator"></param>
         public void RemoveMediator(IMediator mediator)
         {
             Mediators.Remove(mediator);

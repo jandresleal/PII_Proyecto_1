@@ -1,15 +1,12 @@
-
-using System.Collections.Generic;
-
 namespace Library
 {
     public interface IMediator
     {
         /// <summary>
         /// Estructuramos el código con el patrón de diseño Mediator, con el objetivo de que toda la 
-        /// comunicación entre las clases pase por un objeto único llamado mediator, individual para 
-        /// cada consulta del usuario. De esta manera buscamos independizar las clases entre sí, para 
-        /// poder modificarlas sin alterar el funcionamiento de las demás. Esto nos facilita la implementación
+        /// comunicación entre las clases pase por un objeto único llamado mediator. 
+        /// De esta manera, buscamos independizar las clases entre sí, para poder modificarlas
+        /// sin alterar el funcionamiento de las demás. Esto nos facilita la implementación
         /// de las diferentes plataformas independientemente del funcionamiento interno del bot.
 
         /// Buscamos encapsular las clases en grupos de alta cohesión entre sí, para que la complejidad 

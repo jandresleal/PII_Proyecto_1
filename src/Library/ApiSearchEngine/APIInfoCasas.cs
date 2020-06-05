@@ -5,14 +5,18 @@ namespace Library
 {
     public class APIInfoCasas : IAPIsSearchEngines
     {
-        public APIInfoCasas(){  }
+        public APIInfoCasas() {  }
 
         /// <summary>
+        /// Esta clase es la encargada de comunicarse con la API de InfoCasas con el
+        /// fin de obtener la lista de propiedades a instanciar y posteriormente
+        /// mostrar al usuario que realizó la búsqueda.
+        /// 
         /// Este elemento busca ser un Expert en el manejo de las APIs para comunicarse
         /// con el Mediator, y tener una única razón de cambio, siguiendo SRP. 
         /// Permite además la expansión a diferentes APIs aplicando el principio polymorphic,
         /// ya que es independiente de ellas, y permitiría que se cumpla LSP ya que las APIs no
-        /// interfieran entre sí, alterando los resultados esperados. 
+        /// deberían interferir entre sí, alterando los resultados esperados. 
         /// </summary>
         /// <param name="filters"></param>
         /// <returns></returns>

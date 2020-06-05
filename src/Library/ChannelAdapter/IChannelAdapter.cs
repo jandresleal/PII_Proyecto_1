@@ -4,16 +4,21 @@ namespace Library
     public interface IChannelAdapter
     {
         /// <summary>
-        /// Para implementar este método decidimos utilizar el patrón de diseño Adapter,
-        /// cuyo objetivo es poder comunicar a dos interfaces diferentes, en nuestro caso
-        /// la plataforma que opera el usuario y nuestro código, convirtiendo los objetos de 
-        /// la primera a una forma comprensible por la segunda.
-        /// Decidimos implementar los ChannelAdapters de manera polimórfica para poder 
+        /// Esta interfaz es la encargada de definir un tipo que será el que las distintas
+        /// integraciones implementen. Tendrá la responsabilidad de recibir información 
+        /// de la integración y convertirla a información entendible por el core del bot.
+        /// 
+        /// Decidimos implementar los ChannelAdapters mediante una interfaz para poder 
         /// independizar nuestro código de ellos, y facilitar la expansión del bot a nuevas
         /// plataformas.
+        /// Buscamos que cada channel adapter cuando implementa la operación, termine devolviendo
+        /// el mismo resultado que los demás con el fin de que el core del bot
+        /// trabaje de una forma única. Sin embargo, cada channel adapter al tratarse de distintas
+        /// integraciones, tendrá que realizar diferentes transformaciones dependiendo de su entorno.
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
+
         string UserInput(string input);
 
         void SendTextToUser(string toUser);

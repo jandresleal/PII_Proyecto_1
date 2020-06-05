@@ -3,11 +3,17 @@ using System;
 
 namespace Library
 {
-
     public class SimpleInterpreter : Interpreter
     {
         public SimpleInterpreter() : base() {}
-
+        /// <summary>
+        /// El método ParseInput se encarga de interpretar el texto y fijarse si encuentra los diferentes filtros.
+        /// En caso de no encontrar ningún filtro le pide al usario otro ingreso mediante Mediator; si encuentra algun filtro llama a Mediator para
+        /// realizar la búsqueda
+        /// </summary>
+        /// <param name="input"> string que recibe por parámetro</param>
+        /// <param name="mediator"></param>
+        /// <param name="database"></param>
         public override void ParseInput(string input, IMediator mediator, Database database)
         {
             string[] entrada = input.ToLower().Split(",");

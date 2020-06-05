@@ -3,7 +3,8 @@ namespace Library
     public class Mediator : IMediator
     {
         /// <summary>
-        /// 
+        /// Es la clase encargada de implementar el Mediator
+        /// Explicamos las razones de su uso en la interfaz IMediator
         /// </summary>
         /// <param name=></param>
         public Mediator() {  }
@@ -81,7 +82,7 @@ namespace Library
 
         public void Search(Database database)
         {
-            database.API.AskAPI(database.GetFilters());
+            database.API.Parse(database.API.AskAPI(database.GetFilters()), this, database);
         }
 
         public void CreateTextToPrint(IPrintFormatter formatter, Database database)

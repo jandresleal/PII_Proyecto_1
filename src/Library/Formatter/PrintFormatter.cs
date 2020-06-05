@@ -6,26 +6,18 @@ namespace Library
     public class PrintFormatter : IPrintFormatter
     {
         /// <summary>
-        /// La clase PrintFormatter implementa la interfaz dado que
-        /// entendimos que todos los distintos tipos de formato que queramos
-        /// dar o implementar en el futuro, seguirán ciertas condiciones básicas,
-        /// es por esto, que sirve como una forma de reutilizar código, permitir
-        /// la extensión y el mantenimiento. Se respeta el principio OCP.
-
-        /// La única razón de cambio es recibir/modificar un mensaje. Con ese mensaje recibido
-        /// se realiza primero el formateo del mismo (a la forma que se quiera, 
-        /// esta clase realizaría un formato básico) y luego la impresión, ambos
-        /// métodos que pueden verse sobrescritos. Por esta razón, se respeta el
-        /// principio SRP y también se sigue el patrón Expert.
-
-        /// Además, implementamos el método FormatMessage() polimórfico dado que dependiendo
-        /// de la superclase se verán distintos resultados a mismo método. Se sigue el patrón
-        /// polymorphism. Como este método al ser implementado no deberá de producir efectos
-        /// colaterales, esperamos que se respete el principio LSP (cuando lo implementemos efectivamente
-        /// y funciona sin efectos colaterales, podremos afirmarlo).
+        /// Esta clase tiene una única (pero gran) responsabilidad que es realizar
+        /// el formateo del mensaje final que llegará al usuario.
+        /// Esta clase recibe la información necesaria para crear el resultado
+        /// esperado por el usuario. Es experta en esta información y su única 
+        /// responsabilidad es realizar esta acción.
+        /// Se respeta el principio SRP y también se sigue el patrón Expert.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
+        
+        public PrintFormatter() {  }
+
         public string FormatMessage(List<IProperty> data) 
         {
             string result = string.Empty;
@@ -42,7 +34,7 @@ namespace Library
                     
                     if (property.Garage == true)
                     {
-                        result += " Para su comodidad, la propiedad incluye garage.";
+                        result += " Para su comodidad, la propiedad incluye garaje.";
                     }
                     
                     if (property.Barbecue == true)
@@ -57,7 +49,7 @@ namespace Library
 
                     if (property.Gym == true)
                     {
-                        result += " Asimismo, este dominio incluye un gimnasio completamente equipo.";
+                        result += " Asimismo, este inmueble incluye un gimnasio completamente equipado.";
                     }
 
                     if (property.SwimmingPool == true)

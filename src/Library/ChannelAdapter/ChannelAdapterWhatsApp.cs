@@ -4,10 +4,11 @@ namespace Library
     public class ChannelAdapterWhatsApp : IChannelAdapter
     {
         /// <summary>
-        /// Utilizamos un atributo privado para controlar el fin de la 
-        /// interacción con el usuario. Cuando el programa detecta que termina el chat,
-        /// elimina la instancia de mediator que se creó para la interacción
-        /// con el usuario.
+        /// Este channel adapter sería el encargado de comunicarse con
+        /// la plataforma WhatsApp (a definir la integración) y quitar
+        /// la estructura con la cual se realiza el intercambio de información
+        /// con la integración, permitiendo que una vez la información se procese
+        /// sea en el formato correcto para el core del robot
         /// </summary>
         /// <param name="Input"></param>
         /// <returns></returns>
