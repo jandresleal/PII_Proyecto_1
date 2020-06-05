@@ -14,7 +14,9 @@ namespace Library
 
         public string Result { get; private set; }
 
-        public IChannelAdapter Adapter { get; }
+        public IChannelAdapter Adapter { get; private set; }
+
+        public IAPIsSearchEngines API { get; private set; }
 
         public Database()
         {
@@ -124,6 +126,16 @@ namespace Library
         public List<IFilter> GetFilters()
         {
             return Filters;
+        }
+
+        public void SetAPI(IAPIsSearchEngines api)
+        {
+            this.API = api;
+        }
+
+        public void SetAdapter(IChannelAdapter adapter)
+        {
+            this.Adapter = adapter;
         }
     }
 }

@@ -28,39 +28,53 @@ namespace Library
         /// <returns></returns>
         public string FormatMessage(List<IProperty> data) 
         {
-            string result = "Se listan las propiedades a continuación" + Environment.NewLine;
+            string result = string.Empty;
 
-            foreach (IProperty property in data)
+            if (data.Count > 0)
             {
-                result += $"La propiedad se encuentra en el barrio {property.Neighbourhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
+                result = "Se listan las propiedades a continuación" + Environment.NewLine;
 
-                if (property.Garage == true)
-                {
-                    result += "Para su comodidad, la propiedad incluye garage.";
-                }
-                
-                else if (property.Barbecue == true)
-                {
-                    result += "A su vez, esta propiedad cuenta con barbacoa.";
-                }
+                int i = 1;
 
-                else if (property.Garden == true)
+                foreach (IProperty property in data)
                 {
-                    result += "Además, presenta un jardín ideal para unas tardes tomando mate.";
-                }
-
-                else if (property.Gym == true)
-                {
-                    result += "Asimismo, este dominio incluye un gimnasio completamente equipo.";
-                }
-
-                else if (property.SwimmingPool == true)
-                {
+                    result += $"La propiedad se encuentra en el barrio {property.Neighbourhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
                     
-                    result += "Y por si fuera poco, tiene piscina!";
+                    if (property.Garage == true)
+                    {
+                        result += " Para su comodidad, la propiedad incluye garage.";
+                    }
+                    
+                    if (property.Barbecue == true)
+                    {
+                        result += " A su vez, esta propiedad cuenta con barbacoa.";
+                    }
+
+                    if (property.Garden == true)
+                    {
+                        result += " Además, presenta un jardín ideal para unas tardes tomando mate.";
+                    }
+
+                    if (property.Gym == true)
+                    {
+                        result += " Asimismo, este dominio incluye un gimnasio completamente equipo.";
+                    }
+
+                    if (property.SwimmingPool == true)
+                    {
+                        result += " Y por si fuera poco, tiene piscina!";
+                    }
+                    
+                    if (data.Count > i)
+                    {
+                        result += Environment.NewLine;
+                    }
+                    i++;
                 }
-                
-                result += Environment.NewLine;
+            }
+            else
+            {
+                result = "No se encontraron propiedades que satisfagan la búsqueda.";
             }
             return result;
         }       

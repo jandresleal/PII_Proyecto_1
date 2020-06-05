@@ -6,9 +6,7 @@ namespace Library
         /// 
         /// </summary>
         /// <param name=></param>
-        public Mediator()
-        {
-        }
+        public Mediator() {  }
 
         public void AddPriceFilter(int min, int max, Database database)
         {
@@ -81,9 +79,9 @@ namespace Library
             database.AddProperty(price, neighbourhood, rooms, baths, habitableArea, area, garage, garden, swimmingPool, barbecue, gym);
         }
 
-        public void Search(IAPIsSearchEngines api, Database database)
+        public void Search(Database database)
         {
-            api.AskAPI(database.GetFilters());
+            database.API.AskAPI(database.GetFilters());
         }
 
         public void CreateTextToPrint(IPrintFormatter formatter, Database database)
