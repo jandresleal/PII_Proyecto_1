@@ -61,30 +61,30 @@ namespace Library
                 
                 else if (x.Contains("garage"))
                 {
-                    mediator.AddGarageFilter(bool.Parse(x),database);
+                    mediator.AddGarageFilter(true,database);
                     i++;
                 }
 
                 else if (x.Contains("garden"))
                 {
-                    mediator.AddGardenFilter(bool.Parse(x),database);
+                    mediator.AddGardenFilter(true,database);
                     i++;
                 }
 
                 else if (x.Contains("swimmingPool"))
                 {
-                    mediator.AddSwimmingPoolFilter(bool.Parse(x),database);
+                    mediator.AddSwimmingPoolFilter(true,database);
                     i++;
                 }
                 else if (x.Contains("barbecue"))
                 {
-                    mediator.AddBarbecueFilter(bool.Parse(x),database);
+                    mediator.AddBarbecueFilter(true,database);
                     i++;
                 }
                 
                 else if (x.Contains("gym"))
                 {
-                    mediator.AddGymFilter(bool.Parse(x),database);
+                    mediator.AddGymFilter(true,database);
                     i++;
                 } 
             }

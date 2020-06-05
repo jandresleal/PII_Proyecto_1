@@ -34,5 +34,51 @@ namespace Library.Test
             Assert.AreEqual(database.GetFilters()[4].GetValues().GetHashCode(), habitableArea.GetValues().GetHashCode());
             Assert.AreEqual(database.GetFilters()[5].GetValues().GetHashCode(), areaFilter.GetValues().GetHashCode());
         }
+        
+        [Test]
+        public void TestParseInputUnFiltro()
+        {
+            IMediator mediator = new Mediator();
+
+            Database database = new Database();
+
+            IInterpreter interpreter = new SimpleInterpreter();
+
+            interpreter.ParseInput("gym", mediator, database);
+
+            GymFilter gymFilter = new GymFilter(true);
+
+            Assert.AreEqual(database.GetFilters()[0].GetValues().GetHashCode(), gymFilter.GetValues().GetHashCode());
+        }
+
+        [Test]
+        public void TestParseInputSinFiltros()
+        {
+            IMediator mediator = new Mediator();
+
+            Database database = new Database();
+
+            IInterpreter interpreter = new SimpleInterpreter();
+
+            IChannelAdapter adapter = new ChannelAdapterWhatsApp();
+
+            // se debe setear un adapter dado que el método ParseInput
+            // en ausencia de filtros, llama al método
+            // SendInfoToAdapter(string question, Database database)
+            // con el fin de devolver que no encontró parámetros
+            // de búsqueda válidos
+            
+            database.SetAdapter(adapter);
+
+            // en caso de no fallar como en los tests anteriores, se llama
+            // al mediador también pero para realizar el search
+            // en base a la API que tenga seteada la database
+
+            interpreter.ParseInput("dhhddzcfxf", mediator, database);
+
+            List<IFilter> filters = new List<IFilter>();
+
+            Assert.AreEqual(database.GetFilters().Count, filters.Count);
+        }
     }
 }
