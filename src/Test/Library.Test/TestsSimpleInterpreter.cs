@@ -18,6 +18,17 @@ namespace Library.Test
 
             IInterpreter interpreter = new SimpleInterpreter();
 
+            IChannelAdapter adapter = new ChannelAdapterWhatsApp();
+
+            // se debe setear una api dado que luego de crear filtros
+            // satisfactoriamente, se envía un mensaje el mediator
+            // para que se ejecute el método Search
+            // el cual, requiere de una API seteada en la database.
+
+            IAPIsSearchEngines api = new APIInfoCasas();
+
+            database.SetAPI(api);
+
             interpreter.ParseInput("price-10-20,Rooms-2,Baths-1,buceo,habitableArea-102,area-150", mediator, database);
 
             PriceFilter priceFilter = new PriceFilter(10,20);
@@ -43,6 +54,10 @@ namespace Library.Test
             Database database = new Database();
 
             IInterpreter interpreter = new SimpleInterpreter();
+
+            IAPIsSearchEngines api = new APIInfoCasas();
+
+            database.SetAPI(api);
 
             interpreter.ParseInput("gym", mediator, database);
 

@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace Library.Test
 {
-    public class TestFilters
+    public class TestPriceFilter
     {
         /// <summary>
         /// Test para la clase PriceFilter
@@ -13,9 +13,8 @@ namespace Library.Test
         [Test]
         public void TestGetValues()
         {
-
             PriceFilter filter = new PriceFilter(10,50);
-            Assert.AreEqual("10,50,", filter.GetValues());
+            Assert.AreEqual("10,50", filter.GetValues());
         }
         /// <summary>
         /// Se establece si el cálculo del rango extendido es correcto
@@ -28,7 +27,7 @@ namespace Library.Test
             PriceFilter filter = new PriceFilter(10,50);
             string result = filter.CalculateExtendedRange(10,50);
 
-            Assert.AreEqual("8,63", result);
+            Assert.AreEqual("8,62", result);
         }
         
     }
