@@ -42,8 +42,12 @@ namespace Library
 
         void AddProperty(int price, string neighbourhood, int rooms, int baths, int habitableArea, int area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym, Database database);
 
-        void Search(IAPIsSearchEngines api, Database database);
+        void Search(Database database);
 
         void CreateTextToPrint(IPrintFormatter formatter, Database database);
+
+        void SendInfoToAdapter(Database database);
+
+        void SendInfoToAdapter(string question, Database database);
     }
 }

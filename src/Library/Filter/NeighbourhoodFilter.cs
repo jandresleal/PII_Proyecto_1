@@ -6,7 +6,7 @@ namespace Library
 
         public NeighbourhoodFilter(string value)
         {
-            this.neighbourhood = value;
+            this.neighbourhood = value.ToLower();
         }
 
         public string GetValues()
