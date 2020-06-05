@@ -5,6 +5,7 @@ namespace Library.Test
     public class TestAPIInfoCasas
     {
         /// <summary>
+        /// Test para la clase APIInfoCasas
         /// 
         /// </summary>
         [Test]
