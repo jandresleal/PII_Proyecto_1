@@ -20,134 +20,35 @@ namespace Library
         /// a la extensión, se le podrían agregar nuvos componentes.  
         /// </summary>
         /// <value></value>
-        public List<IFilter> Filters {get; set;}
+        public List<IFilter> Filters { get; set;}
+        
+        public double IdUsuario { get; set; }
 
         public List<IProperty> Properties { get; }
 
         public string Result { get; private set; }
 
-        public IChannelAdapter Adapter { get; private set; }
+        //public IChannelAdapter Adapter { get; private set; }
 
-        public IAPIsSearchEngines API { get; private set; }
+        //public IAPIsSearchEngines API { get; private set; }
 
-        public Database()
+        public Database(double idUsuario)
         {
+            this.IdUsuario = idUsuario;
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
         }
 
-        public void AddPriceFilter(int min, int max)
-        {
-            Filters.Add(new PriceFilter(min, max));
+        // Metodo para guardar la database
+        // Recorro una lista de database, en caso de que no exista la creo y la guardo en una lista para poder tenerla a futuro 
+        public static void SaveDatabase(Database database)
+        {         
+            //Metodo para simular el guardado de la database. No se tiene q crear una nueva lista sino obtener la ya creada.
+            List<Database> databaseList = new List<Database>();
+            databaseList.Add(database);
         }
 
-        public void AddNeighbourhoodFilter(string neighbourhood)
-        {
-            Filters.Add(new NeighbourhoodFilter(neighbourhood));
-        }
-
-        public void AddRoomsFilter(int number)
-        {
-            Filters.Add(new RoomsFilter(number));
-        }
-
-        public void AddBathsFilter(int number)
-        {
-            Filters.Add(new BathsFilter(number));
-        }
-
-        public void AddHabitableAreaFilter(int area)
-        {
-            Filters.Add(new HabitableAreaFilter(area));
-        }
-
-        public void AddAreaFilter(int area)
-        {
-            Filters.Add(new AreaFilter(area));
-        }
-
-        public void AddGarageFilter(bool b1)
-        {
-            Filters.Add(new GarageFilter(b1));
-        }
-    
-        public void AddGardenFilter(bool b1)
-        {
-            Filters.Add(new GardenFilter(b1));
-        }
-
-        public void AddSwimmingPoolFilter(bool b1)
-        {
-            Filters.Add(new SwimmingPoolFilter(b1));
-        }
-
-        public void AddBarbecueFilter(bool b1)
-        {
-            Filters.Add(new BarbecueFilter(b1));
-        }
-
-        public void AddGymFilter(bool b1)
-        {
-            Filters.Add(new GymFilter(b1));
-        }
-
-        public void AddProperty(
-            int price, 
-            string neighbourhood, 
-            int rooms, 
-            int baths, 
-            int habitableArea, 
-            int area, 
-            bool garage, 
-            bool garden, 
-            bool swimmingPool, 
-            bool barbecue, 
-            bool gym)
-        {
-            Properties.Add(new Property(
-                price,
-                neighbourhood,
-                rooms,
-                baths,
-                habitableArea,
-                area,
-                garage,
-                garden,
-                swimmingPool,
-                barbecue,
-                gym
-            ));
-        }
-
-        public void SetResult(string data)
-        {
-            this.Result = data;
-        }
-
-        public string SendResult()
-        {
-            return Result;
-        }
-
-        public List<IProperty> GetPropertyList()
-        {
-            return Properties;
-        }
-
-        public List<IFilter> GetFilters()
-        {
-            return Filters;
-        }
-
-        public void SetAPI(IAPIsSearchEngines api)
-        {
-            this.API = api;
-        }
-
-        public void SetAdapter(IChannelAdapter adapter)
-        {
-            this.Adapter = adapter;
-        }
+        
     }
 }
