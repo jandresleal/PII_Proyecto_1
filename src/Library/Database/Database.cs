@@ -20,9 +20,9 @@ namespace Library
         /// a la extensión, se le podrían agregar nuvos componentes.  
         /// </summary>
         /// <value></value>
-        public List<IFilter> Filters {get; set;}
+        public List<IFilter> Filters {get; private set; }
 
-        public List<IProperty> Properties { get; }
+        public List<IProperty> Properties { get; private set; }
 
         public string Result { get; private set; }
 
