@@ -15,7 +15,7 @@ namespace Library.Test
         {
 
             PriceFilter filter = new PriceFilter(10,50);
-            Assert.AreEqual("10,50,", filter.GetValues());
+            Assert.AreEqual("10,50", filter.GetValues());
         }
         /// <summary>
         /// Se establece si el cálculo del rango extendido es correcto
