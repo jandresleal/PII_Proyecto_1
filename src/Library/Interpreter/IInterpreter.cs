@@ -12,6 +12,6 @@ namespace Library
         /// <param name="input"></param>
         /// <param name="mediator"></param>
         /// <param name="database"></param>
-        void ParseInput(string input, IMediator mediator, Database database);
+        Database ParseInput(string input); //, IMediator mediator, Database database);
     }
 }

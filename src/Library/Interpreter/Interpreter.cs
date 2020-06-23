@@ -29,6 +29,6 @@ namespace Library
         /// </summary>
         public Interpreter() {  }
 
-        public abstract void ParseInput(string input, IMediator mediator, Database database);
+        public abstract Database ParseInput(string input); //, IMediator mediator, Database database);
     }
 }
