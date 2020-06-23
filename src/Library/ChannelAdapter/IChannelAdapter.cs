@@ -19,9 +19,9 @@ namespace Library
         /// <param name="input"></param>
         /// <returns></returns>
 
-        string UserInput(string input);
+        void UserInput(string input);
 
-        void SendTextToUser(string toUser);
+        string SendTextToUser(string toUser);
 
         bool EndMediator(string connection);
     }
