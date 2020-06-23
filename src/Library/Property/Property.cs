@@ -16,7 +16,7 @@ namespace Library
         /// asigna la responsabilidad a la clase que tiene toda la información necesaria.
         /// </summary>
         /// <value></value>
-        public double Price { get; }
+        public int Price { get; }
 
         public string Neighbourhood { get; }
         
@@ -24,9 +24,9 @@ namespace Library
 
         public int Baths { get; }
         
-        public double HabitableArea { get; }
+        public int HabitableArea { get; }
 
-        public double Area { get; }
+        public int Area { get; }
 
         public bool Garage { get; }
 
@@ -38,7 +38,7 @@ namespace Library
         
         public bool Gym { get; }
 
-        public Property(double price, string neighbourhood, int rooms, int baths, double habitableArea, double area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
+        public Property(int price, string neighbourhood, int rooms, int baths, int habitableArea, int area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
         {
             this.Price = price;
             this.Neighbourhood = neighbourhood;
@@ -51,6 +51,11 @@ namespace Library
             this.SwimmingPool = swimmingPool;
             this.Barbecue = barbecue;
             this.Gym = gym;
+        }
+
+        public string GetPropertyValues()
+        {
+            return $"{this.Price},{this.Neighbourhood},{this.Rooms},{this.Baths},{this.HabitableArea},{this.Area},{this.Garage},{this.Garden},{this.SwimmingPool},{this.Barbecue},{this.Gym}";
         }
     }
 }

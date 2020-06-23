@@ -2,9 +2,16 @@ namespace Library
 {
     public class HabitableAreaFilter : IFilter
     {
-        private double value;
+        /// <summary>
+        /// Filtro independiente creado únicamente para HabitableArea
+        
+        /// Cada filtro, respeta SRP dado que tiene una única razón
+        /// para su cambio, cuando se modifican sus atributos.
+        /// </summary>
 
-        public HabitableAreaFilter(double number)
+        private int value;
+
+        public HabitableAreaFilter(int number)
         {
             this.value = number;
         }

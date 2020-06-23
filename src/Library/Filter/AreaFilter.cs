@@ -2,9 +2,15 @@ namespace Library
 {
     public class AreaFilter : IFilter
     {
-        private double  value;
+        /// <summary>
+        /// Filtro independiente creado únicamente para Area
+        
+        /// Cada filtro, respeta SRP dado que tiene una única razón
+        /// para su cambio, cuando se modifican sus atributos.
+        /// </summary>
+        private int  value;
 
-        public AreaFilter(double number)
+        public AreaFilter(int number)
         {
             this.value = number;
         }

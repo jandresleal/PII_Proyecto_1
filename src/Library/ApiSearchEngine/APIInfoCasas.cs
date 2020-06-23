@@ -5,19 +5,18 @@ namespace Library
 {
     public class APIInfoCasas : IAPIsSearchEngines
     {
-        public APIInfoCasas(IMediator mediator)
-        {   
-            this.mediator = mediator;
-        }
-
-        private IMediator mediator;
+        public APIInfoCasas() {  }
 
         /// <summary>
+        /// Esta clase es la encargada de comunicarse con la API de InfoCasas con el
+        /// fin de obtener la lista de propiedades a instanciar y posteriormente
+        /// mostrar al usuario que realizó la búsqueda.
+        /// 
         /// Este elemento busca ser un Expert en el manejo de las APIs para comunicarse
         /// con el Mediator, y tener una única razón de cambio, siguiendo SRP. 
         /// Permite además la expansión a diferentes APIs aplicando el principio polymorphic,
         /// ya que es independiente de ellas, y permitiría que se cumpla LSP ya que las APIs no
-        /// interfieran entre sí, alterando los resultados esperados. 
+        /// deberían interferir entre sí, alterando los resultados esperados. 
         /// </summary>
         /// <param name="filters"></param>
         /// <returns></returns>
@@ -53,11 +52,9 @@ namespace Library
 
         // el método parse a continuación es llamado por el mediator y
         // en la práctica recibe el string retornado por la API
-        public List<IProperty> Parse(string data)
+        public void Parse(string data, IMediator mediator, Database database)
         {
-            List<IProperty> properties = new List<IProperty>();
-
-            string[] objects = data.Split(@"/n");
+            string[] objects = data.Split("-");
 
             foreach (string x in objects)
             {
@@ -68,16 +65,16 @@ namespace Library
                     atributes[1],
                     Int32.Parse(atributes[2]),
                     Int32.Parse(atributes[3]),
-                    double.Parse(atributes[4]),
-                    double.Parse(atributes[5]),
+                    Int32.Parse(atributes[4]),
+                    Int32.Parse(atributes[5]),
                     bool.Parse(atributes[6]),
                     bool.Parse(atributes[7]),
                     bool.Parse(atributes[8]),
                     bool.Parse(atributes[9]),
-                    bool.Parse(atributes[10])
+                    bool.Parse(atributes[10]),
+                    database
                 );
             }
-            return properties;
         }
     }
 }

@@ -12,11 +12,11 @@ namespace Library
         /// para su cambio, cuando se modifican sus atributos.
         /// </summary>
         /// <value></value>
-        public double MinPrice { get; set; }
-        public double MaxPrice { get; set; }
+        public int MinPrice { get; set; }
+        public int MaxPrice { get; set; }
         public string ExtendedRange { get; }
 
-        public PriceFilter(double minPrice, double maxPrice)
+        public PriceFilter(int minPrice, int maxPrice)
         {
             this.MinPrice = minPrice;
             this.MaxPrice = maxPrice;
@@ -25,8 +25,8 @@ namespace Library
 
         public string GetValues()
         {
-            string result = $"{this.MaxPrice},";
-            result += $"{this.MinPrice},";
+            string result = $"{this.MinPrice},";
+            result += $"{this.MaxPrice}";
             
             return result;
         }
@@ -36,10 +36,16 @@ namespace Library
             string result = $"{this.ExtendedRange}";
             return result;
         }
-
-        public string CalculateExtendedRange(double min, double max)
+        /// <summary>
+        /// Este método realiza un cálculo para mostrar un rango 
+        /// extendido de los precios.
+        /// </summary>
+        /// <param name="min">Precio mínimo ingresado</param>
+        /// <param name="max">Precio máximo ingresado</param>
+        /// <returns></returns>
+        public string CalculateExtendedRange(int min, int max)
         {
-            string result = $"{min * 0.8},{max * 1.25}";
+            string result = $"{(min * 80 / 100)},{(max * 125 / 100)}";
             return result;
         }
     }

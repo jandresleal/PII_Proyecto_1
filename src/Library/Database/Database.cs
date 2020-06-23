@@ -5,7 +5,19 @@ namespace Library
     public class Database
     {
         /// <summary>
+        /// Esta clase es la encargada de almacenar y crear todos los filtros y propiedades.
+        /// También es la encargada de guardar un texto que es el que se irá modificando con el
+        /// fin de culminar entregando el resultado final al usuario.
+        /// Esta clase también conoce con qué API trabajará y de cuál adapter fue llamada, con el fin
+        /// de saber dónde buscar una vez ensamblados los filtros y también saber responderle al usuario,
+        /// es decir, saber ubicarlo.
         /// 
+        /// Database almacena las listas de filtros y propiedades. Al tener esa responsabilidad y
+        /// conocerlos, también creemos que tiene la capacidad y responsabilidad de instanciarlos
+        /// De esta forma, aplicamos el patrón Creator, los métodos de database para la creación
+        /// de filtros y propiedades, reciben todos los argumentos necesarios para su ensamblado.
+        /// Se respeta OCP dado que Database no está abierto a la modificación pero sí
+        /// a la extensión, se le podrían agregar nuvos componentes.  
         /// </summary>
         /// <value></value>
         public List<IFilter> Filters {get; set;}
@@ -14,7 +26,9 @@ namespace Library
 
         public string Result { get; private set; }
 
-        public IChannelAdapter Adapter { get; }
+        public IChannelAdapter Adapter { get; private set; }
+
+        public IAPIsSearchEngines API { get; private set; }
 
         public Database()
         {
@@ -23,7 +37,7 @@ namespace Library
             this.Properties = new List<IProperty>();
         }
 
-        public void AddPriceFilter(double min, double max)
+        public void AddPriceFilter(int min, int max)
         {
             Filters.Add(new PriceFilter(min, max));
         }
@@ -43,12 +57,12 @@ namespace Library
             Filters.Add(new BathsFilter(number));
         }
 
-        public void AddHabitableAreaFilter(double area)
+        public void AddHabitableAreaFilter(int area)
         {
             Filters.Add(new HabitableAreaFilter(area));
         }
 
-        public void AddAreaFilter(double area)
+        public void AddAreaFilter(int area)
         {
             Filters.Add(new AreaFilter(area));
         }
@@ -79,12 +93,12 @@ namespace Library
         }
 
         public void AddProperty(
-            double price, 
+            int price, 
             string neighbourhood, 
             int rooms, 
             int baths, 
-            double habitableArea, 
-            double area, 
+            int habitableArea, 
+            int area, 
             bool garage, 
             bool garden, 
             bool swimmingPool, 
@@ -124,6 +138,16 @@ namespace Library
         public List<IFilter> GetFilters()
         {
             return Filters;
+        }
+
+        public void SetAPI(IAPIsSearchEngines api)
+        {
+            this.API = api;
+        }
+
+        public void SetAdapter(IChannelAdapter adapter)
+        {
+            this.Adapter = adapter;
         }
     }
 }

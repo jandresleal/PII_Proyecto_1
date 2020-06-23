@@ -5,7 +5,7 @@ namespace Library.Test
     public class TestDatabase
     {
         /// <summary>
-        /// 
+        /// Aquí se realizan los tests correspondientes a Database
         /// </summary>
         [Test]
         public void TestAddPriceFilter()
@@ -60,9 +60,9 @@ namespace Library.Test
         {
             Database database = new Database();
 
-            database.AddHabitableAreaFilter(68.2);
+            database.AddHabitableAreaFilter(68);
 
-            IFilter filter = new HabitableAreaFilter(68.2);
+            IFilter filter = new HabitableAreaFilter(68);
 
             Assert.AreEqual(database.GetFilters()[0].GetValues().GetHashCode(), filter.GetValues().GetHashCode());
         }
@@ -72,9 +72,9 @@ namespace Library.Test
         {
             Database database = new Database();
 
-            database.AddAreaFilter(42.987);
+            database.AddAreaFilter(42);
 
-            IFilter filter = new AreaFilter(42.987);
+            IFilter filter = new AreaFilter(42);
 
             Assert.AreEqual(database.GetFilters()[0].GetValues().GetHashCode(), filter.GetValues().GetHashCode());
         }
@@ -137,6 +137,40 @@ namespace Library.Test
             IFilter filter = new GymFilter(false);
 
             Assert.AreEqual(database.GetFilters()[0].GetValues().GetHashCode(), filter.GetValues().GetHashCode());
+        }
+
+        [Test]
+        public void TestAddProperty()
+        {
+            Database database = new Database();
+
+            database.AddProperty(
+                120000, 
+                "buceo",
+                3,
+                2,
+                102,
+                182,
+                true,
+                true,
+                false,
+                true,
+                false
+            );
+
+            IProperty property = new Property(120000, "buceo", 3, 2, 102, 182, true, true, false, true, false);
+
+            Assert.AreEqual(database.GetPropertyList()[0].GetPropertyValues().GetHashCode(),property.GetPropertyValues().GetHashCode());
+        }
+
+        [Test]
+        public void TestResult()
+        {
+            Database database = new Database();
+
+            database.SetResult("pepito");
+
+            Assert.AreEqual(database.SendResult(),"pepito");
         }
     }
 }
