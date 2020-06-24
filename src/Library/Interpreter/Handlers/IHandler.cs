@@ -4,6 +4,6 @@ namespace Library
     {
         IHandler Next { set; }
 
-        void Handle(Message m);
+        void Handle(InterpreterMessage m);
     }
 }

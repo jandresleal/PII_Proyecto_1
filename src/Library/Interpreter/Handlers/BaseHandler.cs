@@ -4,7 +4,7 @@ namespace Library
     {
         public IHandler Next { get; set; }
 
-        public virtual void Handle(Message m)
+        public virtual void Handle(InterpreterMessage m)
         {
             if (this.Next != null)
             {

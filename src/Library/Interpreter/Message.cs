@@ -1,12 +1,12 @@
 namespace Library
 {
-    public class Message
+    public class InterpreterMessage
     {
         public string Type { get; set; }
         
         public string Value { get; set; }
 
-        public Message(string type, string value)
+        public InterpreterMessage(string type, string value)
         {
             this.Type = type;
             this.Value = value;
