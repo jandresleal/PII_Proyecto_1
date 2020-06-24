@@ -7,7 +7,7 @@ namespace Library.Test
     public class TestsPrintFormatter
     {
         /// <summary>
-        /// Test para la clase PrintFormatter
+        /// Tests para PrintFormatter
         /// </summary>
         [Test]
         public void TestFormatMessageVacio()

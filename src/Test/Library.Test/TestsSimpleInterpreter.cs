@@ -6,7 +6,7 @@ namespace Library.Test
     public class TestsSimpleInterpreter
     {
         /// <summary>
-        /// Test para la clase SimpleInterpreter
+        /// 1Test para la clase SimpleInterpreter
         /// </summary>
         [Test]
         public void TestParseInputMultiplesFiltros()
@@ -28,7 +28,7 @@ namespace Library.Test
 
             database.SetAPI(api);
 
-            interpreter.ParseInput("price-10-20,Rooms-2,Baths-1,buceo,habitableArea-102,area-150", mediator, database);
+            interpreter.ParseInput("price-10-20,Rooms-2,Baths-1,buceo,habitableArea-102,area-150", database);
 
             PriceFilter priceFilter = new PriceFilter(10,20);
             RoomsFilter roomsFilter = new RoomsFilter(2);
@@ -58,7 +58,7 @@ namespace Library.Test
 
             database.SetAPI(api);
 
-            interpreter.ParseInput("gym", mediator, database);
+            interpreter.ParseInput("gym", database);
 
             GymFilter gymFilter = new GymFilter(true);
 
@@ -88,7 +88,7 @@ namespace Library.Test
             // al mediador también pero para realizar el search
             // en base a la API que tenga seteada la database
 
-            interpreter.ParseInput("dhhddzcfxf", mediator, database);
+            interpreter.ParseInput("dhhddzcfxf", database);
 
             List<IFilter> filters = new List<IFilter>();
 

@@ -5,8 +5,7 @@ namespace Library.Test
     public class TestDatabase
     {
         /// <summary>
-        /// Test para la clase Database
-        /// 
+        /// Aquí se realizan los tests correspondientes a Database
         /// </summary>
         [Test]
         public void TestAddPriceFilter()
@@ -161,7 +160,7 @@ namespace Library.Test
 
             IProperty property = new Property(120000, "buceo", 3, 2, 102, 182, true, true, false, true, false);
 
-            Assert.AreEqual(database.GetPropertyList()[0].GetPropertyValues().GetHashCode(),property.GetPropertyValues().GetHashCode());
+            Assert.IsTrue(database.GetPropertyList()[0].Equals(property));
         }
 
         [Test]

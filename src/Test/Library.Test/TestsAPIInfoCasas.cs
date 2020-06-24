@@ -5,8 +5,7 @@ namespace Library.Test
     public class TestAPIInfoCasas
     {
         /// <summary>
-        /// Test para la clase APIInfoCasas
-        /// 
+        /// Aquí se realizan los tests para la ApiInfoCasas
         /// </summary>
         [Test]
         public void TestParseMultiplesPropiedades()
