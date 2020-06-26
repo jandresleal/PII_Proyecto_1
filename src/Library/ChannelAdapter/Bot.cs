@@ -8,15 +8,16 @@ using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Telegram.Bot.Types.InputFiles;
+using Telegram.Bot;
 using Library;
 
 //telegram tenga los tres metodos del adaptador
 //metodos aparte si hay preciso mensajes
 //O usar este codigo y modificarlo para q la logica cumpla los metodos del adapter
 
-namespace Telegram.Bot.Examples.Echo
+namespace Library
 {
-    public class Telegram 
+    public class T 
     {
         /// <summary>
         /// La instancia del bot.
@@ -46,8 +47,8 @@ namespace Telegram.Bot.Examples.Echo
                 cts.Token
             );
 
+            Console.WriteLine("Bot is Up!");
             Console.WriteLine($"Bienvenid@! Soy Pepe, ¿Estas buscando una propiedad para alquilar o comprar? Yo te ayudaré en eso!! {Environment.NewLine} Escribe 1 si desea alquilar o 2 si desea comprar.");
-            //Poner lista de opciones 
             
 
             // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.

@@ -54,12 +54,7 @@ namespace Library
         // en la práctica recibe el string retornado por la API
         public void Parse(string data, IMediator mediator, Database database)
         {
-            string[] objects = data.Split("-");
 
-            foreach (string x in objects)
-            {
-                string[] atributes = x.Split(",");
-            }
         }
     }
 }

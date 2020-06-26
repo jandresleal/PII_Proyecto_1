@@ -1,9 +1,16 @@
 using System;
 
-namespace ConsoleChannel
+namespace Library
 {
     public class Console
     {
+        public void Run()
+        {
+            while (true)
+            {
+                Console.ReadLine();
+            }
+        }
 
     }
 }
