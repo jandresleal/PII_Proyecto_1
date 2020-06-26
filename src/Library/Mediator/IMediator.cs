@@ -15,29 +15,9 @@ namespace Library
         /// de Bajo Acoplamiento.
         /// </summary>
 
-        void AddPriceFilter(int min, int max, Database database);
+        void AddFilter(IFilter filter, Database database);
 
-        void AddNeighbourhoodFilter(string neighbourhood, Database database);
-
-        void AddRoomsFilter(int number, Database database);
-
-        void AddBathsFilter(int number, Database database);
-
-        void AddHabitableAreaFilter(int area, Database database);
-
-        void AddAreaFilter(int area, Database database);
-
-        void AddGarageFilter(bool b1, Database database);
-    
-        void AddGardenFilter(bool b1, Database database);
-
-        void AddSwimmingPoolFilter(bool b1, Database database);
-
-        void AddBarbecueFilter(bool b1, Database database);
-
-        void AddGymFilter(bool b1, Database database);
-
-        void AddProperty(int price, string neighbourhood, int rooms, int baths, int habitableArea, int area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym, Database database);
+        void AddProperty(IProperty property, Database database);
 
         void Search(Database database);
 

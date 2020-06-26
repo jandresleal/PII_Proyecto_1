@@ -59,21 +59,6 @@ namespace Library
             foreach (string x in objects)
             {
                 string[] atributes = x.Split(",");
-                
-                mediator.AddProperty(
-                    Int32.Parse(atributes[0]),
-                    atributes[1],
-                    Int32.Parse(atributes[2]),
-                    Int32.Parse(atributes[3]),
-                    Int32.Parse(atributes[4]),
-                    Int32.Parse(atributes[5]),
-                    bool.Parse(atributes[6]),
-                    bool.Parse(atributes[7]),
-                    bool.Parse(atributes[8]),
-                    bool.Parse(atributes[9]),
-                    bool.Parse(atributes[10]),
-                    database
-                );
             }
         }
     }

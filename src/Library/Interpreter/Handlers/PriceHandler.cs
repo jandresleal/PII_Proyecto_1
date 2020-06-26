@@ -4,7 +4,7 @@ namespace Library
 {
     public class PriceHandler : BaseHandler
     {
-        public override void Handle(Message m)
+        public override void Handle(InterpreterMessage m)
         {
             if (m.Type == "price")
             {
