@@ -11,6 +11,8 @@ namespace Library
                 string[] split = m.Value.Split("-");
 
                 PriceFilter price = new PriceFilter(Int32.Parse(split[1]),Int32.Parse(split[2]));
+
+                base.Handle(m);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace Library
                 {
                     NeighbourhoodFilter neighbourhoodFilter = new NeighbourhoodFilter (m.Value);
 
-                    
+                    base.Handle(m);
                 }
             }
         }

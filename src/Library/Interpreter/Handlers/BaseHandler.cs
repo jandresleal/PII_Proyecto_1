@@ -1,6 +1,6 @@
 namespace Library
 {
-    public class BaseHandler : SingleInstance<BaseHandler>
+    public class BaseHandler : IHandler
     {
         public IHandler Next { get; set; }
 
