@@ -30,32 +30,7 @@ namespace Library
 
                 foreach (IProperty property in data)
                 {
-                    result += $"La propiedad se encuentra en el barrio {property.Neighbourhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
-                    
-                    if (property.Garage == true)
-                    {
-                        result += " Para su comodidad, la propiedad incluye garaje.";
-                    }
-                    
-                    if (property.Barbecue == true)
-                    {
-                        result += " A su vez, esta propiedad cuenta con barbacoa.";
-                    }
-
-                    if (property.Garden == true)
-                    {
-                        result += " Además, presenta un jardín ideal para unas tardes tomando mate.";
-                    }
-
-                    if (property.Gym == true)
-                    {
-                        result += " Asimismo, este inmueble incluye un gimnasio completamente equipado.";
-                    }
-
-                    if (property.SwimmingPool == true)
-                    {
-                        result += " Y por si fuera poco, tiene piscina!";
-                    }
+                    result += $"La propiedad se encuentra en el barrio {property.Neighbourhood}";
                     
                     if (data.Count > i)
                     {

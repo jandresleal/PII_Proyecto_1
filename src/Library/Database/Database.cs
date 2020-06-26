@@ -28,96 +28,30 @@ namespace Library
 
         public IChannelAdapter Adapter { get; private set; }
 
+        public string UserID { get; }
+
+        // permite ser configurable la api de búsqueda
+        // sirve en el caso de que tengamos más
+        // de una implementada
         public IAPIsSearchEngines API { get; private set; }
 
-        public Database()
+        public Database(IChannelAdapter adapter, string id)
         {
+            this.Adapter = adapter;
+            this.UserID = id;
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
         }
 
-        public void AddPriceFilter(int min, int max)
+        public void AddFilter (IFilter filter)
         {
-            Filters.Add(new PriceFilter(min, max));
+            this.Filters.Add(filter);
         }
 
-        public void AddNeighbourhoodFilter(string neighbourhood)
+        public void AddProperty(IProperty property)
         {
-            Filters.Add(new NeighbourhoodFilter(neighbourhood));
-        }
-
-        public void AddRoomsFilter(int number)
-        {
-            Filters.Add(new RoomsFilter(number));
-        }
-
-        public void AddBathsFilter(int number)
-        {
-            Filters.Add(new BathsFilter(number));
-        }
-
-        public void AddHabitableAreaFilter(int area)
-        {
-            Filters.Add(new HabitableAreaFilter(area));
-        }
-
-        public void AddAreaFilter(int area)
-        {
-            Filters.Add(new AreaFilter(area));
-        }
-
-        public void AddGarageFilter(bool b1)
-        {
-            Filters.Add(new GarageFilter(b1));
-        }
-    
-        public void AddGardenFilter(bool b1)
-        {
-            Filters.Add(new GardenFilter(b1));
-        }
-
-        public void AddSwimmingPoolFilter(bool b1)
-        {
-            Filters.Add(new SwimmingPoolFilter(b1));
-        }
-
-        public void AddBarbecueFilter(bool b1)
-        {
-            Filters.Add(new BarbecueFilter(b1));
-        }
-
-        public void AddGymFilter(bool b1)
-        {
-            Filters.Add(new GymFilter(b1));
-        }
-
-        public void AddProperty(
-            int price, 
-            string neighbourhood, 
-            int rooms, 
-            int baths, 
-            int habitableArea, 
-            int area, 
-            bool garage, 
-            bool garden, 
-            bool swimmingPool, 
-            bool barbecue, 
-            bool gym)
-        {
-            Properties.Add(new Property(
-                price,
-                neighbourhood,
-                rooms,
-                baths,
-                habitableArea,
-                area,
-                garage,
-                garden,
-                swimmingPool,
-                barbecue,
-                gym
-            ));
+            this.Properties.Add(property);
         }
 
         public void SetResult(string data)

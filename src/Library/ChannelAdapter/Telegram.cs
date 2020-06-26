@@ -30,7 +30,7 @@ namespace Telegram.Bot.Examples.Echo
         /// Para probar este ejemplo, crea un bot nuevo y reemplaza este 
         /// token por el de tu bot.
         /// </summary>
-        private static string Token = "1214554557:AAFMAslDQ-QTW7lKVaYE-SQ1LgiPp1SAvh";
+        private static string Token = "1073884003:AAFJ4GZVartXwX3pBnd16HhS3bYKlANqcZk";
 
         /// <summary>
         /// Punto de entrada.

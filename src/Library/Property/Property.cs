@@ -16,46 +16,30 @@ namespace Library
         /// asigna la responsabilidad a la clase que tiene toda la información necesaria.
         /// </summary>
         /// <value></value>
+
+        public string Title { get; }
+
+        public string Description { get; }
+
         public int Price { get; }
 
+        public int Expenses { get; }
+
         public string Neighbourhood { get; }
+
+        public string ImagePath { get; }
+
+        public string ResultPath { get; }
         
-        public int Rooms { get; }
-
-        public int Baths { get; }
-        
-        public int HabitableArea { get; }
-
-        public int Area { get; }
-
-        public bool Garage { get; }
-
-        public bool Garden { get; }
-
-        public bool SwimmingPool { get; }
-
-        public bool Barbecue { get; }
-        
-        public bool Gym { get; }
-
-        public Property(int price, string neighbourhood, int rooms, int baths, int habitableArea, int area, bool garage, bool garden, bool swimmingPool, bool barbecue, bool gym)
+        public Property(string title, string description, int price, int expenses, string neighbourhood, string imagePath, string resultPath)
         {
+            this.Title = title;
+            this.Description = description;
             this.Price = price;
+            this.Expenses = expenses;
             this.Neighbourhood = neighbourhood;
-            this.Rooms = rooms;
-            this.Baths = baths;
-            this.HabitableArea = habitableArea;
-            this.Area = area;
-            this.Garage = garage;
-            this.Garden = garden;
-            this.SwimmingPool = swimmingPool;
-            this.Barbecue = barbecue;
-            this.Gym = gym;
-        }
-
-        public string GetPropertyValues()
-        {
-            return $"{this.Price},{this.Neighbourhood},{this.Rooms},{this.Baths},{this.HabitableArea},{this.Area},{this.Garage},{this.Garden},{this.SwimmingPool},{this.Barbecue},{this.Gym}";
+            this.ImagePath = imagePath;
+            this.ResultPath = resultPath;
         }
     }
 }
