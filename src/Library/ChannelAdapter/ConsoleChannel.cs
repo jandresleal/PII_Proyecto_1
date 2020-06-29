@@ -2,7 +2,7 @@ using System;
 
 namespace Library
 {
-    public class Console
+    public class ConsoleChannel
     {
         public void Run()
         {
@@ -11,6 +11,5 @@ namespace Library
                 Console.ReadLine();
             }
         }
-
     }
 }
