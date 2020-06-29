@@ -6,28 +6,20 @@ namespace Library
         /// 
         /// </summary>
         /// <value></value>
+        /// 
+        
+        string Title { get; }
+
+        string Description { get; }
+
         int Price { get; }
+
+        int Expenses { get; }
 
         string Neighbourhood { get; }
 
-        int Rooms { get; }
+        string ImagePath { get; }
 
-        int Baths { get; }
-
-        int HabitableArea { get; }
-
-        int Area { get; }
-
-        bool Garage { get; }
-
-        bool Garden { get; }
-
-        bool SwimmingPool { get; }
-
-        bool Barbecue { get; }
-
-        bool Gym { get; }
-
-        string GetPropertyValues();
+        string ResultPath { get; }
     }
 }

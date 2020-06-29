@@ -1,4 +1,5 @@
 ﻿using System;
+using Library;
 
 namespace Program
 {
@@ -10,7 +11,9 @@ namespace Program
         /// <param name="args"></param>
         static void Main(string[] args)
         {
+            TelegramBot telegram = new TelegramBot();
             
+            telegram.StartBot();
         }
     }
 }

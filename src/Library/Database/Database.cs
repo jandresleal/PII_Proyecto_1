@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System;
+using System.IO;
 
 namespace Library
 {
@@ -20,35 +22,107 @@ namespace Library
         /// a la extensión, se le podrían agregar nuvos componentes.  
         /// </summary>
         /// <value></value>
-        public List<IFilter> Filters { get; set;}
-        
-        public double IdUsuario { get; set; }
+        public List<IFilter> Filters {get; private set; }
 
-        public List<IProperty> Properties { get; }
+        public List<IProperty> Properties { get; private set; }
 
         public string Result { get; private set; }
 
-        //public IChannelAdapter Adapter { get; private set; }
+        public IChannelAdapter Adapter { get; private set; }
 
-        //public IAPIsSearchEngines API { get; private set; }
+        public string UserID { get; }
 
-        public Database(double idUsuario)
+        // permite ser configurable la api de búsqueda
+        // sirve en el caso de que tengamos más
+        // de una implementada
+        public IAPIsSearchEngines API { get; private set; }
+
+        public Database(IChannelAdapter adapter, string id)
         {
-            this.IdUsuario = idUsuario;
+            this.Adapter = adapter;
+            this.UserID = id;
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
         }
 
-        // Metodo para guardar la database
-        // Recorro una lista de database, en caso de que no exista la creo y la guardo en una lista para poder tenerla a futuro 
-        public static void SaveDatabase(Database database)
-        {         
-            //Metodo para simular el guardado de la database. No se tiene q crear una nueva lista sino obtener la ya creada.
-            List<Database> databaseList = new List<Database>();
-            databaseList.Add(database);
+        public void AddFilter (IFilter filter)
+        {
+            this.Filters.Add(filter);
         }
 
-        
+        public void AddProperty(IProperty property)
+        {
+            this.Properties.Add(property);
+        }
+
+        public void SetResult(string data)
+        {
+            this.Result = data;
+        }
+
+        public string SendResult()
+        {
+            return Result;
+        }
+
+        public List<IProperty> GetPropertyList()
+        {
+            return Properties;
+        }
+
+        public List<IFilter> GetFilters()
+        {
+            return Filters;
+        }
+
+        public void SetAPI(IAPIsSearchEngines api)
+        {
+            this.API = api;
+        }
+
+        public void SetAdapter(IChannelAdapter adapter)
+        {
+            this.Adapter = adapter;
+        }
+        public void SaveFile(Database database, long chatId)
+        {
+            string ruta = @"C:\RutaArchivos\" + chatId + ".txt";
+
+            //En vez de actualizar el archivo lo elimino y lo creo de nuevo
+            if (File.Exists(ruta))
+            {
+                File.Delete(ruta);
+            }
+
+            //Se crea un txt por cada sesion de chat.
+            using (System.IO.StreamWriter file = new System.IO.StreamWriter(ruta))
+            {
+                //Recorro la lista de filtros de la database y guardo el tipo y el valor de los mismos
+                //Cada linea queda de la forma: minimo=15000
+                foreach (string filter in database.Filters)
+                {
+                    file.WriteLine(filter.Type + "=" + filter.Value );
+                }
+            }
+        }
+        public Database ReadFile(long chatId)
+        {
+            string ruta = @"C:\RutaArchivos\" + chatId + ".txt";
+            string[] lines = File.ReadAllLines(ruta);
+            Database database = new Database();
+
+            foreach (string line in lines)
+            {
+                string[] filtro = line.Split("=");
+                string tipo = filtro[0];
+                string valor = filtro[1];
+                //Aca tengo que determinar que tipo de filtro es para poder crearlo y agregarlo a la database
+
+                database.Filters.Add(filter);
+            }
+            return database;
+
+        }  
     }
 }
