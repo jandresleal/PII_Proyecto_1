@@ -2,6 +2,8 @@ using System.Collections.Generic;
 
 namespace Library
 {
+    public enum Status { WaitingTransactionType, WaitingPrice, WaitingNeighbourhood, SearchDone, MoreResults }
+
     public class Database
     {
         /// <summary>
@@ -26,9 +28,11 @@ namespace Library
 
         public string Result { get; private set; }
 
-        public IChannelAdapter Adapter { get; private set; }
+        public IChannelAdapter Adapter { get; }
 
         public string UserID { get; }
+
+        public Status State { get; private set; }
 
         // permite ser configurable la api de búsqueda
         // sirve en el caso de que tengamos más
@@ -42,6 +46,7 @@ namespace Library
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
+            this.State = Status.WaitingTransactionType;
         }
 
         public void AddFilter (IFilter filter)
@@ -74,14 +79,16 @@ namespace Library
             return Filters;
         }
 
+        // si tuviéramos más de una integrada
+        // podríamos dar la opción de cambiar sitio de búsqueda
         public void SetAPI(IAPIsSearchEngines api)
         {
             this.API = api;
         }
 
-        public void SetAdapter(IChannelAdapter adapter)
+        public void SetState(Status x)
         {
-            this.Adapter = adapter;
+            this.State = x;
         }
     }
 }
