@@ -1,6 +1,6 @@
 namespace Library
 {
-    public class TransactionTypeFilter
+    public class TransactionTypeFilter : IFilter
     {
         public string Value { get; private set; }
 

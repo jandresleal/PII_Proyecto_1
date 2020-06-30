@@ -19,8 +19,6 @@ namespace Library
         /// <param name="filters"></param>
         /// <returns></returns>
         
-        string AskAPI(List<IFilter> filters);
-
-        void Parse(string data, IMediator mediator, Database database);
+        void AskAPI(List<IFilter> filters, long id);
     }
 }

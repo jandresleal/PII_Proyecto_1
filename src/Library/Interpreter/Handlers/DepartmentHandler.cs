@@ -1,15 +1,15 @@
 namespace Library
 {
-    public class TransactionTypeHandler : BaseHandler
+    public class DepartmentHandler : BaseHandler
     {
         public override void Handle(InterpreterMessage m)
         {
-            if (m.MessageType == Type.Transaction)
+            if (m.MessageType == Type.Department)
             {
                 SingleInstance<Mediator>.GetInstance.AddFilter(
-                    new TransactionTypeFilter(m.Value),
+                    new DepartmentFilter(m.Value),
                     SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(m.ID)
-                );
+                ); 
             }
 
             base.Handle(m);

@@ -24,22 +24,21 @@ namespace Library
             if (input != string.Empty)
             {
                 TransactionTypeHandler transactionTypeHandler = new TransactionTypeHandler();
-                PriceHandler priceHandler = new PriceHandler();
                 NeighbourhoodHandler neighbourhoodHandler = new NeighbourhoodHandler();
                 
-                transactionTypeHandler.Next = priceHandler;
-                priceHandler.Next = neighbourhoodHandler;
+                // transactionTypeHandler.Next = priceHandler;
+                // priceHandler.Next = neighbourhoodHandler;
 
                 switch (database.State)
                 {
                     case Status.WaitingTransactionType:
                         if(input.Replace(" ", "") == "1")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage ("propiedad", "alquiler", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "alquiler", database.UserID));
                         }
                         else if (input.Replace(" ", "") == "2")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage ("propiedad", "compra", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "compra", database.UserID));
                         }
                         else
                         {
@@ -48,7 +47,7 @@ namespace Library
 
                         break;
 
-                    case Status.WaitingPrice:
+                    /* case Status.WaitingPrice:
                         StringBuilder sb = new StringBuilder (input);
 
                         sb.Replace(" ", "");
@@ -58,6 +57,7 @@ namespace Library
                         transactionTypeHandler.Handle(new InterpreterMessage ("precio", sb.ToString(), database.UserID));
 
                         break;
+                    */
 
                     case Status.WaitingNeighbourhood:
                         StringBuilder sb1 = new StringBuilder (input.ToLower());
@@ -67,7 +67,7 @@ namespace Library
 
                         try
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage ("barrio", sb1.ToString(), database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Department, sb1.ToString(), database.UserID));
                         }
                         catch (Exception e)
                         {

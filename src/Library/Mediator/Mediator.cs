@@ -21,7 +21,7 @@ namespace Library
 
         public void Search(Database database)
         {
-            database.API.Parse(database.API.AskAPI(database.GetFilters()), this, database);
+            database.API.AskAPI(database.GetFilters(), database.UserID);
         }
 
         public void CreateTextToPrint(IPrintFormatter formatter, Database database)
