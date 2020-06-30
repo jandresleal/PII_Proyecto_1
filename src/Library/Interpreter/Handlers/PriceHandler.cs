@@ -6,14 +6,21 @@ namespace Library
     {
         public override void Handle(InterpreterMessage m)
         {
-            if (m.Type == "price")
+            if (m.Type == "precio")
             {
-                string[] split = m.Value.Split("-");
+                int number;
 
-                PriceFilter price = new PriceFilter(Int32.Parse(split[1]),Int32.Parse(split[2]));
-
-                base.Handle(m);
+                if (Int32.TryParse(m.Value, out number))
+                {
+                    SingleInstance<Mediator>.GetInstance.AddFilter(new PriceFilter(m.Value), SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(m.ID));
+                }
+                else
+                {
+                    throw new Exception();
+                }    
             }
+
+            base.Handle(m);
         }
     }
 }

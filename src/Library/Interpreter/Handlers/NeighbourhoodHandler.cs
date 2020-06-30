@@ -13,11 +13,15 @@ namespace Library
             {
                 if (neighbourhoods.Contains(m.Value))
                 {
-                    NeighbourhoodFilter neighbourhoodFilter = new NeighbourhoodFilter (m.Value);
-
-                    base.Handle(m);
+                    NeighbourhoodFilter neighbourhoodFilter = new NeighbourhoodFilter (m.Value); 
+                }
+                else
+                {
+                    throw new Exception();
                 }
             }
+            
+            base.Handle(m);
         }
     }
 }

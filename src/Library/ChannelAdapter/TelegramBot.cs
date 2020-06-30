@@ -48,11 +48,6 @@ namespace Library
             );
         
             Console.WriteLine("Bot is up!.");
-            // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
-            Console.ReadLine();
-
-            // Terminamos el bot.
-            cts.Cancel();
         }
 
         /// <summary>
@@ -131,7 +126,9 @@ namespace Library
 
         public void ReadUserInput(long ID, string input)
         {
-            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(this, ID);
+            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(ID);
+
+            db.SetAdapter(this);
             
             SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
         }

@@ -11,7 +11,7 @@ namespace Library
             this.Map = new Dictionary<long, Database>();
         }
 
-        public Database GetDatabaseInstance(IChannelAdapter adapter, long ID)
+        public Database GetDatabaseInstance(long ID)
         {
             Database db;
 
@@ -21,7 +21,7 @@ namespace Library
             }
             else
             {
-                Database database = new Database(adapter, ID);
+                Database database = new Database(ID);
                 Map.Add(ID, database);
                 return database;
             }

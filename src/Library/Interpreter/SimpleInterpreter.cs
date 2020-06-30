@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Text;
 
 namespace Library
 {
@@ -21,49 +22,71 @@ namespace Library
         public void ParseInput(string input, Database database)
         {
             if (input != string.Empty)
-            { 
-                switch (database.State)
-                {
-                    case Status.WaitingTransactionType:
-                        if(input.Replace(" ", "") == "1")
-                        {
-                            InterpreterMessage message = new InterpreterMessage("propiedad", "alquiler");
-                        }
-                        else if (input.Replace(" ", "") == "2")
-                        {
-                            InterpreterMessage message = new InterpreterMessage("propiedad", "compra");
-                        }
-                        else
-                        {
-                            throw new Exception();
-                        }
-                    break;
-
-                    case Status.WaitingPrice:
-
-                    break;
-
-                    case Status.WaitingNeighbourhood:
-
-                    break;
-
-                    case Status.SearchDone:
-
-                    break;
-
-                    case Status.MoreResults:
-
-                    break;
-                }
-
-                List<string> neighbourhoods = new List<string> { "aguada", "aires puros", "arroyo seco", "atahualpa", "bañados de carrasco", "barra de carrasco", "barrio sur", "bella italia", "bella vista", "belvedere", "bolivar", "brazo oriental", "buceo", "camino maldonado", "capurro", "capurro bella vista", "carrasco", "carrasco este", "carrasco norte", "casabo", "casabo pajas blancas", "casavalle", "centro", "cerrito", "cerro", "ciudad vieja", "colon", "conciliacion", "cordon", "flor de maronas", "goes", "golf", "ituizango", "jacinto vera", "jardines del hipodromo", "la blanqueada", "la caleta", "la colorada", "la comercial", "la figurita", "la paloma tomkinson", "la teja", "larrañaga", "las acacias", "las canteras", "lezica", "malvín", "malvin norte", "manga", "marconi", "maroñas", "melilla", "mercado modelo", "montevideo", "nuevo paris", "pajas blancas", "palermo", "parque batlle", "parque miramar", "parque rodo", "paso de la arena", "paso molino", "peñarol", "peñarol lavalleja", "perez castellanos", "piedas blancas", "pocitos", "pocitos nuevo", "prado", "prado nueva savona", "puerto", "puerto buceo", "punta carretas", "punta espinillo", "punta gorda", "punta rieles", "reducto", "santiago vazquez", "sayago", "tres cruces", "tres ombues pblo victoria", "union", "villa biarritz", "villa dolores", "villa española", "villa garcia manga rural", "villa muños", "zona rural" };
-
+            {
                 TransactionTypeHandler transactionTypeHandler = new TransactionTypeHandler();
                 PriceHandler priceHandler = new PriceHandler();
                 NeighbourhoodHandler neighbourhoodHandler = new NeighbourhoodHandler();
                 
                 transactionTypeHandler.Next = priceHandler;
                 priceHandler.Next = neighbourhoodHandler;
+
+                switch (database.State)
+                {
+                    case Status.WaitingTransactionType:
+                        if(input.Replace(" ", "") == "1")
+                        {
+                            transactionTypeHandler.Handle(new InterpreterMessage ("propiedad", "alquiler", database.UserID));
+                        }
+                        else if (input.Replace(" ", "") == "2")
+                        {
+                            transactionTypeHandler.Handle(new InterpreterMessage ("propiedad", "compra", database.UserID));
+                        }
+                        else
+                        {
+                            throw new Exception();
+                        }
+
+                        break;
+
+                    case Status.WaitingPrice:
+                        StringBuilder sb = new StringBuilder (input);
+
+                        sb.Replace(" ", "");
+                        sb.Replace(",", "");
+                        sb.Replace(".", "");
+
+                        transactionTypeHandler.Handle(new InterpreterMessage ("precio", sb.ToString(), database.UserID));
+
+                        break;
+
+                    case Status.WaitingNeighbourhood:
+                        StringBuilder sb1 = new StringBuilder (input.ToLower());
+                        
+                        sb1.Replace(",", "");
+                        sb1.Replace(".", "");
+
+                        try
+                        {
+                            transactionTypeHandler.Handle(new InterpreterMessage ("barrio", sb1.ToString(), database.UserID));
+                        }
+                        catch (Exception e)
+                        {
+                                Console.WriteLine(e.Message);
+                        }
+
+                        break;
+
+                    default:
+                        if (database.Adapter == SingleInstance<TelegramBot>.GetInstance)
+                        {
+                            SingleInstance<TelegramBot>.GetInstance.SendTextToUser(database.UserID, "Aun estamos procesando su búsqueda!");
+                        }
+                        else if (database.Adapter == SingleInstance<ConsoleChannel>.GetInstance)
+                        {
+                            SingleInstance<ConsoleChannel>.GetInstance.SendTextToUser(database.UserID, "Aun estamos procesando su búsqueda!");
+                        }
+                        break;
+                }
             }
         }
     }

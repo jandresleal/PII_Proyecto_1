@@ -8,14 +8,16 @@ namespace Library
         {
             while (true)
             {
-                Console.WriteLine("Bot is up!");
+                Console.WriteLine("corriendo");
                 this.ReadUserInput(1, Console.ReadLine());
             }
         }
 
         public void ReadUserInput(long id, string input)
         {
-            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(this, id);
+            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id);
+
+            db.SetAdapter(this);
 
             SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
         }

@@ -28,7 +28,7 @@ namespace Library
 
         public string Result { get; private set; }
 
-        public IChannelAdapter Adapter { get; }
+        public IChannelAdapter Adapter { get; private set; }
 
         public long UserID { get; }
 
@@ -39,9 +39,8 @@ namespace Library
         // de una implementada
         public IAPIsSearchEngines API { get; private set; }
 
-        public Database(IChannelAdapter adapter, long id)
+        public Database(long id)
         {
-            this.Adapter = adapter;
             this.UserID = id;
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
@@ -89,6 +88,11 @@ namespace Library
         public void SetState(Status x)
         {
             this.State = x;
+        }
+
+        public void SetAdapter(IChannelAdapter adapter)
+        {
+            this.Adapter = adapter;
         }
     }
 }
