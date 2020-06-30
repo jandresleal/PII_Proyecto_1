@@ -30,7 +30,7 @@ namespace Library
 
         public IChannelAdapter Adapter { get; }
 
-        public string UserID { get; }
+        public long UserID { get; }
 
         public Status State { get; private set; }
 
@@ -39,7 +39,7 @@ namespace Library
         // de una implementada
         public IAPIsSearchEngines API { get; private set; }
 
-        public Database(IChannelAdapter adapter, string id)
+        public Database(IChannelAdapter adapter, long id)
         {
             this.Adapter = adapter;
             this.UserID = id;

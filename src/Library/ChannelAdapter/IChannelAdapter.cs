@@ -19,10 +19,10 @@ namespace Library
         /// <param name="input"></param>
         /// <returns></returns>
 
-        string UserInput(string input);
+        void Run();
 
-        string SendTextToUser(string toUser);
+        void ReadUserInput(long ID, string response);
 
-        bool EndMediator(string connection);
+        void SendTextToUser(long ID, string input);
     }
 }
