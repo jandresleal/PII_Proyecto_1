@@ -4,14 +4,14 @@ namespace Library
 {
     public class DatabaseMap
     {
-        private Dictionary<string, Database> Map;
+        private Dictionary<long, Database> Map;
 
         public DatabaseMap()
         {
-            this.Map = new Dictionary<string, Database>();
+            this.Map = new Dictionary<long, Database>();
         }
 
-        public Database GetDatabaseInstance(IChannelAdapter adapter, string ID)
+        public Database GetDatabaseInstance(long ID)
         {
             Database db;
 
@@ -21,7 +21,7 @@ namespace Library
             }
             else
             {
-                Database database = new Database(adapter, ID);
+                Database database = new Database(ID);
                 Map.Add(ID, database);
                 return database;
             }

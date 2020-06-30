@@ -31,12 +31,12 @@ namespace Library
 
         public void SendInfoToAdapter(Database database)
         {
-            database.Adapter.SendTextToUser(database.SendResult());
+            // database.Adapter.SendTextToUser(database.SendResult());
         }
 
         public void SendInfoToAdapter(string question, Database database)
         {
-            database.Adapter.SendTextToUser(question);
+            // database.Adapter.SendTextToUser(question);
         }
     }
 }

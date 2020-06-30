@@ -17,7 +17,7 @@ using Library;
 
 namespace Library
 {
-    public class TelegramBot 
+    public class TelegramBot : IChannelAdapter
     {
         /// <summary>
         /// La instancia del bot.
@@ -36,7 +36,7 @@ namespace Library
         /// <summary>
         /// Punto de entrada.
         /// </summary>
-        public void StartBot()
+        public void Run()
         {
             Bot = new TelegramBotClient(Token);
             var cts = new CancellationTokenSource();
@@ -47,11 +47,7 @@ namespace Library
                 cts.Token
             );
         
-            // Esperamos a que el usuario aprete Enter en la consola para terminar el bot.
-            Console.ReadLine();
-
-            // Terminamos el bot.
-            cts.Cancel();
+            Console.WriteLine("Bot is up!.");
         }
 
         /// <summary>
@@ -83,61 +79,11 @@ namespace Library
         /// </summary>
         /// <param name="message">El mensaje recibido</param>
         /// <returns></returns>
-        private static async Task HandleMessageReceived(Message message)
+        private static async Task HandleMessageReceived (Message message)
         {
             Console.WriteLine($"Received a message from {message.From.FirstName} saying: {message.Text}");
             
-            string response;
-
-            string lastResponse = string.Empty;
-
-            //Cambiar para lista de posibles respuestas
-
-            if (lastResponse == "Por favor, dime el precio mínimo")
-            {
-                int number;
-
-                bool isParseable = Int32.TryParse(message.Text.ToLower(), out number);
-
-                response = "Por favor, escribe el barrio";
-                lastResponse = response;
-            }
-            
-            switch(message.Text.ToLower())
-            {
-                // alquilar propiedad
-                case "1":
-                    // SimpleInterpreter.GetInstance.ParseInput("alquilar, alquilar", Database db);
-                    response = "Por favor, dime el precio mínimo";
-                    lastResponse = response;
-                    break;
-                
-                // comprar propiedad
-                case "2":
-                    // SimpleInterpreter.GetInstance.ParseInput("comprar, comprar", Database db);
-                    response = "Por favor, dime el precio máximo";
-                    lastResponse = response;
-                    break;
-
-                case "chau": 
-                    //adapter.UserInput("chau");
-                    response = "Chau! Que andes bien!";
-                    //response = adapter.SendTextToUser(text);
-                    break;
-
-                case "foto":
-                    // si nos piden una foto, mandamos la foto en vez de responder
-                    // con un mensaje de texto.
-                    await SendProfileImage(message);
-                    return;
-
-                default: 
-                    response = "Disculpa, no se qué hacer con ese mensaje!";
-                    break;
-            }
-
-            // enviamos el texto de respuesta
-            await Bot.SendTextMessageAsync(message.Chat.Id, response);
+            SingleInstance<TelegramBot>.GetInstance.ReadUserInput(message.Chat.Id, message.Text.ToLower());
         }
 
         /// <summary>
@@ -171,6 +117,20 @@ namespace Library
         {
             Console.WriteLine(exception.Message);
             return Task.CompletedTask;
+        }
+
+        public void SendTextToUser(long ID, string response)
+        {  
+            Bot.SendTextMessageAsync(ID, response);
+        }
+
+        public void ReadUserInput(long ID, string input)
+        {
+            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(ID);
+
+            db.SetAdapter(this);
+            
+            SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
         }
     }
 }

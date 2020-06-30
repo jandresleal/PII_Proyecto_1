@@ -11,9 +11,9 @@ namespace Program
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            TelegramBot telegram = new TelegramBot();
-            
-            telegram.StartBot();
+            SingleInstance<TelegramBot>.GetInstance.Run();
+
+            SingleInstance<ConsoleChannel>.GetInstance.Run();
         }
     }
 }

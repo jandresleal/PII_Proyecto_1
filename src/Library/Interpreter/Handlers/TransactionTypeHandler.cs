@@ -9,10 +9,10 @@ namespace Library
         {
             if (m.Type == "propiedad")
             {
-                TransactionTypeFilter property = new TransactionTypeFilter(m.Value);
-
-                base.Handle(m);
+                TransactionTypeFilter property = new TransactionTypeFilter(m.Value); 
             }
+
+            base.Handle(m);
         }
     }
 }

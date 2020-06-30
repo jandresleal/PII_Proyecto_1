@@ -31,11 +31,11 @@ namespace Library
                 // simplemente
                 if (ask != string.Empty)
                 {
-                    ask += "," + filter.GetValues();
+                    ask += "," + filter.Value;
                 }
                 else
                 {
-                    ask += filter.GetValues();
+                    ask += filter.Value;
                 } 
             }
             // aquí preguntaríamos a la api en base al ask creado
