@@ -23,8 +23,6 @@ namespace Library
 
         void CreateTextToPrint(IPrintFormatter formatter, Database database);
 
-        void SendInfoToAdapter(Database database);
-
-        void SendInfoToAdapter(string question, Database database);
+        void SendInfoToAdapter(Database database, string input);
     }
 }

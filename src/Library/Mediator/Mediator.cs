@@ -27,16 +27,15 @@ namespace Library
         public void CreateTextToPrint(IPrintFormatter formatter, Database database)
         {
             database.SetResult(formatter.FormatMessage(database.GetPropertyList()));
+            
+            this.SendInfoToAdapter(database, database.GetResult());
+
+            database.SetState(Status.SearchDone);
         }
 
-        public void SendInfoToAdapter(Database database)
+        public void SendInfoToAdapter(Database database, string input)
         {
-            // database.Adapter.SendTextToUser(database.SendResult());
-        }
-
-        public void SendInfoToAdapter(string question, Database database)
-        {
-            // database.Adapter.SendTextToUser(question);
+            database.Adapter.SendTextToUser(database.UserID, input);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public enum Status { WaitingTransactionType, WaitingPrice, WaitingNeighbourhood, SearchDone, MoreResults }
+    public enum Status { Init, WaitingTransactionType, WaitingDepartment, WaitingNeighbourhood, WaitingPropertyType, Searching, SearchDone, MoreResults }
 
     public class Database
     {
@@ -45,7 +45,8 @@ namespace Library
             this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
-            this.State = Status.WaitingTransactionType;
+            this.State = Status.Init;
+            this.API = SingleInstance<APIInfoCasas>.GetInstance;
         }
 
         public void AddFilter (IFilter filter)
@@ -63,7 +64,7 @@ namespace Library
             this.Result = data;
         }
 
-        public string SendResult()
+        public string GetResult()
         {
             return Result;
         }

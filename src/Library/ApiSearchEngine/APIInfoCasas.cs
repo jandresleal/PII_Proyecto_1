@@ -83,6 +83,11 @@ namespace Library
                     SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id)
                 );
             }
+
+            SingleInstance<Mediator>.GetInstance.CreateTextToPrint(
+                SingleInstance<PrintFormatter>.GetInstance,
+                SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id)
+            );
         }
     }
 }
