@@ -8,7 +8,6 @@ namespace Library
         {
             while (true)
             {
-                Console.WriteLine("corriendo");
                 this.ReadUserInput(1, Console.ReadLine());
             }
         }
@@ -19,7 +18,17 @@ namespace Library
 
             db.SetAdapter(this);
 
-            SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
+            if (db.State == Status.Init)
+            {
+                this.SendTextToUser(id, "Bienvenid@! Mi nombre es Pepe, estoy aquí para ayudarte a encontrar la casa de tus sueños." + Environment.NewLine + "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+
+                db.SetState(Status.WaitingTransactionType);
+            }
+
+            else
+            {
+                SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
+            }
         }
 
         public void SendTextToUser(long id, string response)

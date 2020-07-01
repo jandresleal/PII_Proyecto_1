@@ -21,9 +21,9 @@ namespace Library
 
         public string Description { get; }
 
-        public int Price { get; }
+        public string Price { get; }
 
-        public int Expenses { get; }
+        public string Expenses { get; }
 
         public string Neighbourhood { get; }
 
@@ -31,7 +31,7 @@ namespace Library
 
         public string ResultPath { get; }
         
-        public Property(string title, string description, int price, int expenses, string neighbourhood, string imagePath, string resultPath)
+        public Property(string title, string description, string price, string expenses, string neighbourhood, string imagePath, string resultPath)
         {
             this.Title = title;
             this.Description = description;

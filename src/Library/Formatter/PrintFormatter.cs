@@ -24,19 +24,20 @@ namespace Library
 
             if (data.Count > 0)
             {
-                result = "Se listan las propiedades a continuación" + Environment.NewLine;
-
-                int i = 1;
+                result = "Se listan las propiedades a continuación:" + Environment.NewLine + Environment.NewLine;
 
                 foreach (IProperty property in data)
                 {
-                    result += $"La propiedad se encuentra en el barrio {property.Neighbourhood}";
+                    result += $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {property.Price}.";
                     
-                    if (data.Count > i)
+                    if ($"{property.Expenses}" != "")
                     {
-                        result += Environment.NewLine;
+                        result+= $" Tiene unos gastos fijos mensuales de {property.Expenses}.";
                     }
-                    i++;
+
+                    result += Environment.NewLine + $"https://infocasas.com.uy{property.ResultPath}";
+
+                    result += Environment.NewLine;
                 }
             }
             else

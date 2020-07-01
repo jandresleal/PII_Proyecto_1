@@ -21,22 +21,21 @@ namespace Library
 
         public void Search(Database database)
         {
-            database.API.Parse(database.API.AskAPI(database.GetFilters()), this, database);
+            database.API.AskAPI(database.GetFilters(), database.UserID);
         }
 
         public void CreateTextToPrint(IPrintFormatter formatter, Database database)
         {
             database.SetResult(formatter.FormatMessage(database.GetPropertyList()));
+            
+            this.SendInfoToAdapter(database, database.GetResult());
+
+            database.SetState(Status.SearchDone);
         }
 
-        public void SendInfoToAdapter(Database database)
+        public void SendInfoToAdapter(Database database, string input)
         {
-            // database.Adapter.SendTextToUser(database.SendResult());
-        }
-
-        public void SendInfoToAdapter(string question, Database database)
-        {
-            // database.Adapter.SendTextToUser(question);
+            database.Adapter.SendTextToUser(database.UserID, input);
         }
     }
 }

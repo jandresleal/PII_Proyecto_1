@@ -13,7 +13,7 @@ namespace Library
 
         public NeighbourhoodFilter(string value)
         {
-            this.Value = value.ToLower();
+            this.Value = value;
         }
     }
 }

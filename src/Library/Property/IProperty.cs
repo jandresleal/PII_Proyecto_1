@@ -12,9 +12,9 @@ namespace Library
 
         string Description { get; }
 
-        int Price { get; }
+        string Price { get; }
 
-        int Expenses { get; }
+        string Expenses { get; }
 
         string Neighbourhood { get; }
 
