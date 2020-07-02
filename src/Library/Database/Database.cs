@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Library
 {
-    public enum Status { Init, WaitingTransactionType, WaitingDepartment, WaitingNeighbourhood, WaitingPropertyType, Searching, SearchDone, MoreResults }
+    public enum Status { Init, WaitingTransactionType, WaitingDepartment, WaitingNeighbourhood, WaitingPropertyType, Searching, SearchDone, NewSearch }
 
     public class Database
     {
@@ -22,11 +22,9 @@ namespace Library
         /// a la extensión, se le podrían agregar nuvos componentes.  
         /// </summary>
         /// <value></value>
-        public List<IFilter> Filters {get; private set; }
+        public List<IFilter> Filters { get; }
 
-        public List<IProperty> Properties { get; private set; }
-
-        public string Result { get; private set; }
+        public List<IProperty> Properties { get; }
 
         public IChannelAdapter Adapter { get; private set; }
 
@@ -42,7 +40,6 @@ namespace Library
         public Database(long id)
         {
             this.UserID = id;
-            this.Result = string.Empty;
             this.Filters = new List<IFilter>();
             this.Properties = new List<IProperty>();
             this.State = Status.Init;
@@ -57,16 +54,6 @@ namespace Library
         public void AddProperty(IProperty property)
         {
             this.Properties.Add(property);
-        }
-
-        public void SetResult(string data)
-        {
-            this.Result = data;
-        }
-
-        public string GetResult()
-        {
-            return Result;
         }
 
         public List<IProperty> GetPropertyList()
@@ -88,7 +75,16 @@ namespace Library
 
         public void SetState(Status x)
         {
-            this.State = x;
+            if (x == Status.NewSearch)
+            {
+                this.State = Status.WaitingTransactionType;
+
+                this.Properties.Clear();
+            }
+            else
+            {
+                this.State = x;
+            }  
         }
 
         public void SetAdapter(IChannelAdapter adapter)

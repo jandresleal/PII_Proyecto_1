@@ -20,7 +20,7 @@ namespace Library
                 }
                 else
                 {
-                    throw new Exception();
+                    throw new InvalidInputException("Por favor ingrese correctamente el barrio.");
                 }
             }
             
