@@ -39,7 +39,8 @@ namespace Library
 
                         if ($"{property.Expenses}" != string.Empty)
                         {
-                            result+= $" Tiene unos gastos fijos mensuales de {property.Expenses}.";
+                            string expenses = property.Expenses.Replace(" GC", "");
+                            result+= $" Tiene unos gastos fijos mensuales de {expenses}.";
                         }
 
                         SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, result);
@@ -47,11 +48,12 @@ namespace Library
 
                     else
                     {
-                        result = $"https://infocasas.com.uy{property.ResultPath} {property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description}. Su precio es de {property.Price}.";
+                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description}. Su precio es de {property.Price}";
 
                         if ($"{property.Expenses}" != string.Empty)
                         {
-                            result+= $" Tiene unos gastos fijos mensuales de {property.Expenses}.";
+                            string expenses = property.Expenses.Replace(" GC", "");
+                            result+= $" Tiene unos gastos fijos mensuales de {expenses}.";
                         }
 
                         SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, result);
@@ -60,7 +62,7 @@ namespace Library
             }
             else
             {
-                result = "No se encontraron propiedades que satisfagan la búsqueda.";
+                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "No se encontraron propiedades que satisfagan la búsqueda.");
             }
             
             Thread.Sleep(1000);
