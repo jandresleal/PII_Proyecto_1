@@ -6,16 +6,22 @@ namespace Library
     {
         public override void Handle(InterpreterMessage m)
         {
-            List<string> departments = new List<string> { "artigas", "canelones", "cerro largo", "colonia", "durazno", "flores", "florida", "internacional", "lavalleja", "maldonado", "montevideo", "paysandu", "rio negro", "rivera", "rocha", "salto", "san jose", "soriano", "tacuarembo", "treinta y tres"};
+            List<string> departments = new List<string> { "artigas", "canelones", "cerro largo", "colonia", "durazno", "flores", "florida", "lavalleja", "maldonado", "montevideo", "paysandu", "rio negro", "rivera", "rocha", "salto", "san jose", "soriano", "tacuarembo", "treinta y tres"};
 
             if (m.MessageType == Type.Department)
             {
-                SingleInstance<Mediator>.GetInstance.AddFilter(
+                if (departments.Contains(m.Value))
+                {
+                    SingleInstance<Mediator>.GetInstance.AddFilter(
                     new DepartmentFilter(m.Value),
                     SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(m.ID)
-                );
+                    );
+                }
+                else
+                {
+                    throw new InvalidInputException("Por favor, ingrese un departamento válido.");
+                }
             }
-
             base.Handle(m);
         }
     }

@@ -13,7 +13,7 @@ namespace Program
         {
             SingleInstance<TelegramBot>.GetInstance.Run();
 
-            // SingleInstance<ConsoleChannel>.GetInstance.Run();
+            SingleInstance<ConsoleChannel>.GetInstance.Run();
         }
     }
 }

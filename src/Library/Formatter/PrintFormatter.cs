@@ -35,7 +35,8 @@ namespace Library
                 {
                     if (property.Neighbourhood == "montevideo")
                     {
-                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {property.Price}";
+                        string price = property.Price.Replace(" ", "");
+                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
 
                         if ($"{property.Expenses}" != string.Empty)
                         {
@@ -48,8 +49,9 @@ namespace Library
 
                     else
                     {
-                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description}. Su precio es de {property.Price}";
-
+                        string price = property.Price.Replace(" ", "");
+                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Su precio es de {price}";
+                        
                         if ($"{property.Expenses}" != string.Empty)
                         {
                             string expenses = property.Expenses.Replace(" GC", "");

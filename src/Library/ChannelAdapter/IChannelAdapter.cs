@@ -1,4 +1,3 @@
-
 namespace Library
 {
     public interface IChannelAdapter

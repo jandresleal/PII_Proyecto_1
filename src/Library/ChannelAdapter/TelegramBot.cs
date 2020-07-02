@@ -1,15 +1,10 @@
 using System;
-using System.IO;
-using System.Linq;
-using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
 using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot;
-using Library;
 
 
 namespace Library
@@ -75,34 +70,14 @@ namespace Library
         /// </summary>
         /// <param name="message">El mensaje recibido</param>
         /// <returns></returns>
+        
+        // no supimos solucionar el warning sin romper el programa
         private static async Task HandleMessageReceived (Message message)
         {
             Console.WriteLine($"Received a message from {message.From.FirstName} saying: {message.Text}");
             
             SingleInstance<TelegramBot>.GetInstance.ReadUserInput(message.Chat.Id, message.Text.ToLower());
         }
-
-        /// <summary>
-        /// Envía una imágen como respuesta al mensaje recibido.
-        /// Como ejemplo enviamos siempre la misma foto.
-        /// </summary>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        
-        /*
-        static async Task SendProfileImage(long ID, string path)
-        {
-            await Bot.SendChatActionAsync(new ChatId(ID), ChatAction.UploadPhoto);
-
-            string filePath = path;
-            using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
-            var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
-            await Bot.SendPhotoAsync(
-                chatId: new ChatId(ID),
-                photo: new InputOnlineFile(fileStream, fileName)
-            );
-        }
-        */
 
         /// <summary>
         /// Manejo de excepciones. 

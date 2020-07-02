@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System.Diagnostics;
 using System;
 using System.Text;
 
@@ -20,6 +20,24 @@ namespace Library
         /// <param name="database"></param>
         public void ParseInput(string input, Database database)
         {
+            try
+            {
+                if (input == null)
+                {
+                    throw new NullReferenceException();
+                }
+            }
+            catch (System.NullReferenceException e)
+            {
+                // si detectamos un string null, pedimos que se nos escriba nuevamente
+                // no deberían de ingresarse string nulls y por lo tanto sería un bug
+                // pero podemos recuperarnos de él
+
+                Debug.WriteLine(e.Message + database.UserID);
+
+                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(database.UserID, "Por favor, ingrese el texto nuevamente");
+            }
+
             if (input != string.Empty)
             {
                 TransactionTypeHandler transactionTypeHandler = new TransactionTypeHandler();
@@ -53,54 +71,74 @@ namespace Library
                         }
                         else
                         {
-                            // throw new Exception();
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingrese 1 o 2.");
                         }
 
                         break;
 
                      case Status.WaitingDepartment:
 
-                        StringBuilder sb = new StringBuilder (input);
-
-                        sb.Replace(",", "");
-                        sb.Replace(".", "");
-
-                        transactionTypeHandler.Handle(new InterpreterMessage (Type.Department, sb.ToString(), database.UserID));
-
-                        if (sb.ToString() == "montevideo")
+                        try
                         {
-                            database.SetState(Status.WaitingNeighbourhood);
+                            StringBuilder sb = new StringBuilder (input);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Ingrese el barrio por favor.");
+                            sb.Replace(",", "");
+                            sb.Replace(".", "");
+
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Department, sb.ToString(), database.UserID));
+
+                            if (sb.ToString() == "montevideo")
+                            {
+                                database.SetState(Status.WaitingNeighbourhood);
+
+                                database.Adapter.SendTextToUser(database.UserID, "Ingrese el barrio por favor.");
+                            }
+                            else
+                            {
+                                database.SetState(Status.WaitingPropertyType);
+
+                                database.Adapter.SendTextToUser(database.UserID, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
+                            }
                         }
-                        else
+                        catch (InvalidInputException e)
+                        {  
+                            database.Adapter.SendTextToUser(database.UserID, e.Message);
+                        }
+
+                        catch (ArgumentNullException e)
                         {
-                            database.SetState(Status.WaitingPropertyType);
+                            Debug.WriteLine(e.Message + database.UserID);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese el departamento nuevamente.");
                         }
-
                         break;
                     
 
                     case Status.WaitingNeighbourhood:
 
-                        StringBuilder sb1 = new StringBuilder (input.ToLower());
-                        
-                        sb1.Replace(",", "");
-                        sb1.Replace(".", "");
-
                         try
                         {
+                            StringBuilder sb1 = new StringBuilder (input.ToLower());
+                        
+                            sb1.Replace(",", "");
+                            sb1.Replace(".", "");
+
                             transactionTypeHandler.Handle(new InterpreterMessage (Type.Neighbourhood, sb1.ToString(), database.UserID));
                         
                             database.SetState(Status.WaitingPropertyType);
 
                             database.Adapter.SendTextToUser(database.UserID, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
                         }
-                        catch (Exception e)
+                        catch (InvalidInputException e)
+                        {  
+                            database.Adapter.SendTextToUser(database.UserID, e.Message);
+                        }
+
+                        catch (ArgumentNullException e)
                         {
-                            Console.WriteLine(e.Message);
+                            Debug.WriteLine(e.Message + database.UserID);
+
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese el barrio nuevamente.");
                         }
 
                         break;
@@ -125,17 +163,25 @@ namespace Library
                         }
                         else
                         {
-                            throw new Exception();
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingrese 1 o 2.");
                         }
                         break;
 
                     case Status.SearchDone:
 
-                        if(input.Replace(" ", "") == "1")
+                        string input2 = input.Replace(" ", "");
+
+                        if (input2 == "1")
                         {
                             database.SetState(Status.NewSearch);
 
                             database.Adapter.SendTextToUser(database.UserID, "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+                        }
+                        else if (input2 == "chau" | input2 == "chauu" | input2 == "nos vemos" | input2 == "nos vemos!" | input2 == "muchas gracias!" | input2 == "muchas gracias" | input2 == "gracias" | input2 == "gracias!")
+                        {
+                            database.Adapter.SendTextToUser(database.UserID, "Muchas gracias por la visita!");
+
+                            database.SetState(Status.Init);
                         }
                         else
                         {
