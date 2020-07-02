@@ -11,9 +11,6 @@ using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot;
 using Library;
 
-//telegram tenga los tres metodos del adaptador
-//metodos aparte si hay preciso mensajes
-//O usar este codigo y modificarlo para q la logica cumpla los metodos del adapter
 
 namespace Library
 {
@@ -27,11 +24,8 @@ namespace Library
         /// <summary>
         /// El token provisto por Telegram al crear el bot.
         ///
-        /// *Importante*:
-        /// Para probar este ejemplo, crea un bot nuevo y reemplaza este 
-        /// token por el de tu bot.
         /// </summary>
-        private static string Token = "1073884003:AAFJ4GZVartXwX3pBnd16HhS3bYKlANqcZk";
+        private static string Token = "1031693629:AAFxdWGZ4miRKnlCjCSZyIDj5KBrE11kwKk";
 
         /// <summary>
         /// Punto de entrada.
@@ -47,7 +41,7 @@ namespace Library
                 cts.Token
             );
         
-            Console.WriteLine("Bot is up!.");
+            Console.WriteLine("Bot is up!");
 
             Console.ReadLine();
         }
