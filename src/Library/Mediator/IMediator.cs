@@ -15,13 +15,13 @@ namespace Library
         /// de Bajo Acoplamiento.
         /// </summary>
 
-        void AddFilter(IFilter filter, Database database);
+        void AddFilter(IFilter filter, long id);
 
-        void AddProperty(IProperty property, Database database);
+        void AddProperty(IProperty property, long id);
 
-        void Search(Database database);
+        void Search(long id);
 
-        void CreateTextToPrint(IPrintFormatter formatter, Database database);
+        void CreateTextToPrint(IPrintFormatter formatter, long id);
 
         void SendInfoToAdapter(long id, string input);
     }

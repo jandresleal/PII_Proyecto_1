@@ -80,13 +80,13 @@ namespace Library
             {
                 SingleInstance<Mediator>.GetInstance.AddProperty(
                     new Property(result.Title, result.Description, result.Price, result.Expenses, barrio, result.ImageURL, result.ResultURL),
-                    SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id)
+                    id
                 );
             }
 
             SingleInstance<Mediator>.GetInstance.CreateTextToPrint(
                 SingleInstance<PrintFormatter>.GetInstance,
-                SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id)
+                id
             );
         }
     }

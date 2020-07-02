@@ -18,7 +18,7 @@ namespace Library
         /// </summary>
         /// <param name="input"> string que recibe por parámetro</param>
         /// <param name="database"></param>
-        public void ParseInput(string input, Database database)
+        public void ParseInput(long id, string input)
         {
             try
             {
@@ -33,9 +33,9 @@ namespace Library
                 // no deberían de ingresarse string nulls y por lo tanto sería un bug
                 // pero podemos recuperarnos de él
 
-                Debug.WriteLine(e.Message + database.UserID);
+                Debug.WriteLine(e.Message + id);
 
-                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(database.UserID, "Por favor, ingrese el texto nuevamente");
+                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor, ingrese el texto nuevamente");
             }
 
             if (input != string.Empty)
@@ -49,29 +49,37 @@ namespace Library
                 neighbourhoodHandler.Next = propertyTypeHandler;
                 propertyTypeHandler.Next = departmentHandler;
 
-                switch (database.State)
+                switch (SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).State)
                 {
+                    case Status.Init:
+
+                        SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Bienvenid@! Mi nombre es Pepe, estoy aquí para ayudarte a encontrar la casa de tus sueños." + Environment.NewLine + "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+
+                        SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingTransactionType);
+
+                        break;
+
                     case Status.WaitingTransactionType:
 
                         if(input.Replace(" ", "") == "1")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "alquiler", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "alquiler", id));
                             
-                            database.SetState(Status.WaitingDepartment);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingDepartment);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Ingrese el departamento por favor.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese el departamento por favor.");
                         }
                         else if (input.Replace(" ", "") == "2")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "compra", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "compra", id));
                         
-                            database.SetState(Status.WaitingDepartment);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingDepartment);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Ingrese el departamento por favor.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese el departamento por favor.");
                         }
                         else
                         {
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingrese 1 o 2.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor, ingrese 1 o 2.");
                         }
 
                         break;
@@ -85,31 +93,31 @@ namespace Library
                             sb.Replace(",", "");
                             sb.Replace(".", "");
 
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Department, sb.ToString(), database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Department, sb.ToString(), id));
 
                             if (sb.ToString() == "montevideo")
                             {
-                                database.SetState(Status.WaitingNeighbourhood);
+                                SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingNeighbourhood);
 
-                                database.Adapter.SendTextToUser(database.UserID, "Ingrese el barrio por favor.");
+                                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese el barrio por favor.");
                             }
                             else
                             {
-                                database.SetState(Status.WaitingPropertyType);
+                                SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingPropertyType);
 
-                                database.Adapter.SendTextToUser(database.UserID, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
+                                SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
                             }
                         }
                         catch (InvalidInputException e)
                         {  
-                            database.Adapter.SendTextToUser(database.UserID, e.Message);
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, e.Message);
                         }
 
                         catch (ArgumentNullException e)
                         {
-                            Debug.WriteLine(e.Message + database.UserID);
+                            Debug.WriteLine(e.Message + id);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese el departamento nuevamente.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor ingrese el departamento nuevamente.");
                         }
                         break;
                     
@@ -123,22 +131,22 @@ namespace Library
                             sb1.Replace(",", "");
                             sb1.Replace(".", "");
 
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Neighbourhood, sb1.ToString(), database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Neighbourhood, sb1.ToString(), id));
                         
-                            database.SetState(Status.WaitingPropertyType);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.WaitingPropertyType);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese 1 para buscar una casa o ingrese 2 para buscar un apartamento.");
                         }
                         catch (InvalidInputException e)
                         {  
-                            database.Adapter.SendTextToUser(database.UserID, e.Message);
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, e.Message);
                         }
 
                         catch (ArgumentNullException e)
                         {
-                            Debug.WriteLine(e.Message + database.UserID);
+                            Debug.WriteLine(e.Message + id);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese el barrio nuevamente.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor ingrese el barrio nuevamente.");
                         }
 
                         break;
@@ -147,23 +155,23 @@ namespace Library
 
                         if(input.Replace(" ", "") == "1")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "casa", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "casa", id));
                             
-                            database.SetState(Status.Searching);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.Searching);
 
-                            SingleInstance<Mediator>.GetInstance.Search(database);
+                            SingleInstance<Mediator>.GetInstance.Search(id);
                         }
                         else if (input.Replace(" ", "") == "2")
                         {
-                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "apartamento", database.UserID));
+                            transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "apartamento", id));
                             
-                            database.SetState(Status.Searching);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.Searching);
 
-                            SingleInstance<Mediator>.GetInstance.Search(database);
+                            SingleInstance<Mediator>.GetInstance.Search(id);
                         }
                         else
                         {
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingrese 1 o 2.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor, ingrese 1 o 2.");
                         }
                         break;
 
@@ -173,25 +181,25 @@ namespace Library
 
                         if (input2 == "1")
                         {
-                            database.SetState(Status.NewSearch);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.NewSearch);
 
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
                         }
                         else if (input2 == "chau" | input2 == "chauu" | input2 == "nos vemos" | input2 == "nos vemos!" | input2 == "muchas gracias!" | input2 == "muchas gracias" | input2 == "gracias" | input2 == "gracias!")
                         {
-                            database.Adapter.SendTextToUser(database.UserID, "Muchas gracias por la visita!");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Muchas gracias por la visita!");
 
-                            database.SetState(Status.Init);
+                            SingleInstance<Mediator>.GetInstance.SetState(id, Status.Init);
                         }
                         else
                         {
-                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese 1 si desea realizar una nueva búsqueda");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor ingrese 1 si desea realizar una nueva búsqueda");
                         }
 
                         break;
 
                     default:
-                            database.Adapter.SendTextToUser(database.UserID, "Aun estamos procesando su búsqueda!");
+                            SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Aun estamos procesando su búsqueda!");
                         break;
                 }
             }

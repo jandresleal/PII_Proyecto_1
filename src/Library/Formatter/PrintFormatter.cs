@@ -35,12 +35,22 @@ namespace Library
                 {
                     if (property.Neighbourhood == "montevideo")
                     {
-                        string price = property.Price.Replace(" ", "");
-                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
+                        string price = this.VariableReplace(property.Price, " ");
+
+                        if (this.PathContainsHttp(property.ResultPath))
+                        {
+                            result = $"{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
+                        }
+
+                        else
+                        {
+                            result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
+                        }
 
                         if ($"{property.Expenses}" != string.Empty)
                         {
-                            string expenses = property.Expenses.Replace(" GC", "");
+                            string expenses = this.VariableReplace(property.Expenses, " GC");
+
                             result+= $" Tiene unos gastos fijos mensuales de {expenses}.";
                         }
 
@@ -49,12 +59,22 @@ namespace Library
 
                     else
                     {
-                        string price = property.Price.Replace(" ", "");
-                        result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Su precio es de {price}";
-                        
+                        string price = this.VariableReplace(property.Price, " ");
+
+                        if (this.PathContainsHttp(property.ResultPath))
+                        {
+                            result = $"{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
+                        }
+
+                        else
+                        {
+                            result = $"https://infocasas.com.uy{property.ResultPath}" + Environment.NewLine + $"{property.ImagePath}" + Environment.NewLine + $"{property.Title} {property.Description} Se encuentra en el barrio {property.Neighbourhood} y su precio es de {price}";
+                        }
+
                         if ($"{property.Expenses}" != string.Empty)
                         {
-                            string expenses = property.Expenses.Replace(" GC", "");
+                            string expenses = this.VariableReplace(property.Expenses, " GC");
+
                             result+= $" Tiene unos gastos fijos mensuales de {expenses}.";
                         }
 
@@ -72,6 +92,23 @@ namespace Library
             SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Si desea realizar una nueva búsqueda, digite 1, de lo contrario, muchas gracias!");
 
             SingleInstance<Mediator>.GetInstance.SetState(id, Status.SearchDone);
-        }       
+        }
+
+        public bool PathContainsHttp (string input)
+        {
+            if (input.Contains("http"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public string VariableReplace(string input, string toReplace)
+        {
+            return input.Replace(toReplace, "");
+        }     
     }
 }

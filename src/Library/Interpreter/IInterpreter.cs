@@ -37,6 +37,6 @@ namespace Library
         /// <param name="input"></param>
         /// <param name="mediator"></param>
         /// <param name="database"></param>
-        void ParseInput(string input, Database database);
+        void ParseInput(long id, string input);
     }
 }

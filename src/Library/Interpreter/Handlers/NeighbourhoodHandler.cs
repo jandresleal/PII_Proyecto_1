@@ -15,7 +15,7 @@ namespace Library
                 {
                     SingleInstance<Mediator>.GetInstance.AddFilter(
                         new NeighbourhoodFilter(m.Value),
-                        SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(m.ID)
+                        m.ID
                     );
                 }
                 else

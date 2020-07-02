@@ -92,28 +92,18 @@ namespace Library
             return Task.CompletedTask;
         }
 
-        public void SendTextToUser(long ID, string response)
+        public void SendTextToUser(long id, string response)
         {
-            Bot.SendTextMessageAsync(new ChatId(ID), response);
+            Bot.SendTextMessageAsync(new ChatId(id), response);
         }
 
-        public void ReadUserInput(long ID, string input)
+        public void ReadUserInput(long id, string input)
         {
-            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(ID);
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id);
 
-            db.SetAdapter(this);
-            
-            if (db.State == Status.Init)
-            {
-                this.SendTextToUser(ID, "Bienvenid@! Mi nombre es Pepe, estoy aquí para ayudarte a encontrar la vivienda de tus sueños." + Environment.NewLine + "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+            SingleInstance<Mediator>.GetInstance.SetAdapter(id, this);
 
-                db.SetState(Status.WaitingTransactionType);
-            }
-
-            else
-            {
-                SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(input, db);
-            }
+            SingleInstance<Mediator>.GetInstance.ToInterpreter(id, input);
         }
     }
 }
