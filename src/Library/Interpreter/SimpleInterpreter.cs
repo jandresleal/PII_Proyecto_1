@@ -129,11 +129,31 @@ namespace Library
                         }
                         break;
 
+                    case Status.SearchDone:
+
+                        if(input.Replace(" ", "") == "1")
+                        {
+                            database.SetState(Status.NewSearch);
+
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+                        }
+                        else
+                        {
+                            database.Adapter.SendTextToUser(database.UserID, "Por favor ingrese 1 si desea realizar una nueva búsqueda");
+                        }
+
+                        break;
+
                     default:
                             database.Adapter.SendTextToUser(database.UserID, "Aun estamos procesando su búsqueda!");
                         break;
                 }
             }
+        }
+
+        public void SetState(long id, Status state)
+        {
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetState(state);
         }
     }
 }

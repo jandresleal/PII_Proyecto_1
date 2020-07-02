@@ -88,19 +88,21 @@ namespace Library
         /// </summary>
         /// <param name="message"></param>
         /// <returns></returns>
-        static async Task SendProfileImage(Message message)
+        
+        /*
+        static async Task SendProfileImage(long ID, string path)
         {
-            await Bot.SendChatActionAsync(message.Chat.Id, ChatAction.UploadPhoto);
+            await Bot.SendChatActionAsync(new ChatId(ID), ChatAction.UploadPhoto);
 
-            const string filePath = @"profile.jpeg";
+            string filePath = path;
             using var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
             await Bot.SendPhotoAsync(
-                chatId: message.Chat.Id,
-                photo: new InputOnlineFile(fileStream, fileName),
-                caption: "Te ves bien!"
+                chatId: new ChatId(ID),
+                photo: new InputOnlineFile(fileStream, fileName)
             );
         }
+        */
 
         /// <summary>
         /// Manejo de excepciones. 
@@ -116,8 +118,8 @@ namespace Library
         }
 
         public void SendTextToUser(long ID, string response)
-        {  
-            Bot.SendTextMessageAsync(ID, response);
+        {
+            Bot.SendTextMessageAsync(new ChatId(ID), response);
         }
 
         public void ReadUserInput(long ID, string input)
@@ -128,7 +130,7 @@ namespace Library
             
             if (db.State == Status.Init)
             {
-                this.SendTextToUser(ID, "Bienvenid@! Mi nombre es Pepe, estoy aquí para ayudarte a encontrar la casa de tus sueños." + Environment.NewLine + "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
+                this.SendTextToUser(ID, "Bienvenid@! Mi nombre es Pepe, estoy aquí para ayudarte a encontrar la vivienda de tus sueños." + Environment.NewLine + "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
 
                 db.SetState(Status.WaitingTransactionType);
             }
