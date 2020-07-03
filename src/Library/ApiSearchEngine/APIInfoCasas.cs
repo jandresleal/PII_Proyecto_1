@@ -8,8 +8,8 @@ namespace Library
         public APIInfoCasas() {  }
 
         /// <summary>
-        /// Esta clase implementa la interfaz IAPIsSearchEngines, es la encargada de comunicarse con la API de
-        /// InfoCasas con el fin de obtener la lista de propiedades a instanciar y posteriormente
+        /// Esta clase implementa la interfaz IAPIsSearchEngines, es la encargada de comunicarse 
+        /// con la API de InfoCasas con el fin de obtener la lista de propiedades a instanciar y posteriormente
         /// mostrarlas al usuario que realizó la búsqueda.
         /// 
         /// Esta interfaz respeta el principio SRP, tiene una única razón de cambio, esta sería
@@ -17,8 +17,13 @@ namespace Library
         /// Permite además la expansión a diferentes APIs aplicando el principio polymorphic,
         /// ya que es independiente de ellas, y permite que se cumpla LSP ya que las APIs no
         /// deberían interferir entre sí, alterando los resultados esperados.
+        /// 
+        /// Además, la clase sigue el patrón Creator dado que conoce todos los atributos necesarios
+        /// para instanciar las propiedades (utiliza como fuente los resultados de la API) y se le
+        /// infiere la responsabilidad de hacerlo.
         /// </summary>
         /// <param name="filters"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
         public void AskAPI(List<IFilter> filters, long id)
         {

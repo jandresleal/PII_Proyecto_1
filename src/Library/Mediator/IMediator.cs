@@ -8,6 +8,8 @@ namespace Library
         /// De esta manera, buscamos independizar las clases entre sí, para poder modificarlas
         /// sin alterar el funcionamiento de las demás. Esto nos facilita la implementación
         /// de las diferentes plataformas independientemente del funcionamiento interno del bot.
+        /// También sigue el patrón singleton dado que se tiene una única instancia de él
+        /// para el funcionamiento del bot
         /// 
         /// Buscamos encapsular las clases en grupos de alta cohesión entre sí, para que la complejidad 
         /// de cada tarea sea manejable y por otro lado maximizar la reutilización del código al 

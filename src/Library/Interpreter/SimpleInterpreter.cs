@@ -7,18 +7,26 @@ namespace Library
 {
     public class SimpleInterpreter : IInterpreter
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public SimpleInterpreter() { }
         /// <summary>
-        /// El método ParseInput se encarga de interpretar el texto y fijarse si encuentra los diferentes filtros.
+        /// El método ParseInput se encarga de interpretar el texto y generar el Objeto InterpreterMessage
+        /// que posteriormente será pasado a los handlers con el fin de generar el filtro correspondiente
         /// En caso de no encontrar ningún filtro le pide al usario otro ingreso mediante Mediator;
-        /// si encuentra algun filtro llama a Mediator para realizar la búsqueda
+        /// una vez ensamblados todos los filtros, llama a Mediator para realizar la búsqueda
+        /// 
+        /// Conoce el estado de la base de datos y en base a él se encarga de interpretar
+        /// información enviada por el usuario
+        /// 
+        /// Sigue el patrón creator a la hora de instanciar los mensajes y los handlers
+        /// Son los objetos necesarios para luego crear los filtros
+        /// El interpreter message se envía a la cadena de responsabilidad instanciada por él.
         /// </summary>
-        /// <param name="input"> string que recibe por parámetro</param>
-        /// <param name="database"></param>
+
+        /// <summary>
+        /// Parse input, método clave del intérprete
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
         public void ParseInput(long id, string input)
         {
             try

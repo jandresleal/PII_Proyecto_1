@@ -20,8 +20,18 @@ namespace Library
 
         void Run();
 
+        /// <summary>
+        /// pasa la entrada al core del sistema
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="response"></param>
         void ReadUserInput(long id, string response);
 
+        /// <summary>
+        /// operación encargada de comunicarse con el usuario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="input"></param>
         void SendTextToUser(long id, string input);
     }
 }

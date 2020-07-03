@@ -15,13 +15,12 @@ namespace Library
         /// Esta clase representa al bot de Telegram, se encarga de ejecutar el bot. 
         /// 
         /// Tiene dos responsabilidades, por un lado leer de consola las entradas del usuario y por otro, 
-        /// brindar la respuesta del core mediante Telegram.
+        /// brindar la respuesta del core del bot mediante Telegram.
         /// </summary>
         private static TelegramBotClient Bot;
 
         /// <summary>
         /// El token provisto por Telegram al crear el bot.
-        ///
         /// </summary>
         private static string Token = "1031693629:AAFxdWGZ4miRKnlCjCSZyIDj5KBrE11kwKk";
 
@@ -45,9 +44,7 @@ namespace Library
         }
 
         /// <summary>
-        /// Maneja las actualizaciones del bot (todo lo que llega), incluyendo
-        /// mensajes, ediciones de mensajes, respuestas a botones, etc. En este
-        /// ejemplo sólo manejamos mensajes de texto.
+        /// Maneja las actualizaciones del bot (todo lo que llega)
         /// </summary>
         /// <param name="update"></param>
         /// <param name="cancellationToken"></param>
@@ -64,6 +61,7 @@ namespace Library
             }
             catch(Exception e)
             {
+                await Bot.SendTextMessageAsync(update.Message.Chat.Id, "Disculpá, mis creadores no me capacitaron para interpretar ese mensaje!");
                 await HandleErrorAsync(e, cancellationToken);
             }
         }
@@ -84,7 +82,6 @@ namespace Library
 
         /// <summary>
         /// Manejo de excepciones. 
-        /// Por ahora simplemente la imprimimos en la consola.
         /// </summary>
         /// <param name="exception"></param>
         /// <param name="cancellationToken"></param>

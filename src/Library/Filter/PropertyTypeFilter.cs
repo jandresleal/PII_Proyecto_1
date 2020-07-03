@@ -7,7 +7,7 @@ namespace Library
         /// <summary>
         /// Esta clase implementa la interfaz IFilter, tiene como única responsabilidad almacenar el filtro correspondiente
         /// al Tipo de propiedad, por ende, cumple con el principio SRP.
-        /// El tipo de propiedad se refier a si es una casa o apartamento.
+        /// El tipo de propiedad se refiere a si es una casa o apartamento.
         /// </summary>
         /// <value></value>
         public string Value { get; }

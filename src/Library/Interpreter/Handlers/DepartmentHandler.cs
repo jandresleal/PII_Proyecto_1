@@ -7,6 +7,9 @@ namespace Library
         /// <summary>
         /// Esta clase hereda de BaseHandler, tiene como única responsabilidad reconocer
         /// el type correspondiente al departamento para luego ensamblar el filtro del type con ese valor. Cumple con SRP
+        /// 
+        /// También sigue el patrón creator dado que son responsables de crear los filtros. Para esto
+        /// utilizan el mensaje interpetado en primera instancia por el interpreter
         /// </summary>
         /// <param name="m"></param>
         public override void Handle(InterpreterMessage m)
