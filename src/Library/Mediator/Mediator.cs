@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System;
 
 namespace Library
 {
@@ -11,21 +12,24 @@ namespace Library
         /// <param name=></param>
         public Mediator() {  }
 
-        public void AddFilter(IFilter filter, Database database)
+        public void AddFilter(IFilter filter, long id)
         {
-                database.AddFilter(filter);
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).AddFilter(filter);
         }
 
-        public void AddProperty(IProperty property, Database database)
+        public void AddProperty(IProperty property, long id)
         {
-            database.AddProperty(property);
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).AddProperty(property);
         }
 
-        public void Search(Database database)
+        public void Search(long id)
         {
             try
             {
-                database.API.AskAPI(database.GetFilters(), database.UserID);
+                SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).API.AskAPI(
+                    SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).GetFilters(), 
+                    id
+                );
             }
             catch (System.NullReferenceException e)
             {
@@ -38,17 +42,32 @@ namespace Library
                 // de la excepción regenerando la única api implementada API 
                 // y continuando el curso normal de la aplicación
 
-                Debug.WriteLine(e.Message + database.UserID);
+                Debug.WriteLine(e.Message + id);
 
-                database.SetAPI(SingleInstance<APIInfoCasas>.GetInstance);
+                SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetAPI(SingleInstance<APIInfoCasas>.GetInstance);
 
-                database.API.AskAPI(database.GetFilters(), database.UserID);
+                SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).API.AskAPI(
+                    SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).GetFilters(), 
+                    id
+                );
             } 
         }
 
-        public void CreateTextToPrint(IPrintFormatter formatter, Database database)
+        public void CreateTextToPrint(long id)
         {
-          formatter.FormatMessage(database.GetPropertyList(), database.UserID);
+            try
+            {  
+                SingleInstance<PrintFormatter>.GetInstance.FormatMessage(SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).GetPropertyList(), id);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message + id);
+
+                // sabemos que puede fallar por null
+                // pero queremos que el programa deje de funcionar
+                // dado que sería un bug
+                throw e;
+            }
         }
 
         public void SendInfoToAdapter(long id, string input)
@@ -83,7 +102,22 @@ namespace Library
 
         public void SetState(long id, Status state)
         {
-            SingleInstance<SimpleInterpreter>.GetInstance.SetState(id, state);
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetState(state);
+        }
+
+        public void SetAPI(long id, IAPIsSearchEngines api)
+        {
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetAPI(api);
+        }
+
+        public void SetAdapter(long id, IChannelAdapter adapter)
+        {
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetAdapter(adapter);
+        }
+
+        public void ToInterpreter(long id, string input)
+        {
+            SingleInstance<SimpleInterpreter>.GetInstance.ParseInput(id, input);
         }
     }
 }

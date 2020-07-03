@@ -8,7 +8,7 @@ namespace Library
             {
                 SingleInstance<Mediator>.GetInstance.AddFilter(
                     new PropertyTypeFilter(m.Value),
-                    SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(m.ID)
+                    m.ID
                 );
             }
 

@@ -19,6 +19,6 @@ namespace Library
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        void FormatMessage(List<IProperty> data, long id);
+        string FormatMessage(List<IProperty> data, long id);
     }
 }

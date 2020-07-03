@@ -1,5 +1,7 @@
-/*
 using NUnit.Framework;
+using PII_ICApi;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Library.Test
 {
@@ -9,43 +11,40 @@ namespace Library.Test
         /// Aquí se realizan los tests para la ApiInfoCasas
         /// </summary>
         [Test]
-        public void TestParseMultiplesPropiedades()
+        public void TestAskAndParseAPI()
         {
-            IMediator mediator = new Mediator();
+            Database database = new Database(1);
 
-            Database database = new Database(); 
+            Database database2 = new Database (5); 
 
-            IAPIsSearchEngines api = new APIInfoCasas();
+            APIInfoCasas apiCore = new APIInfoCasas();
 
-            string data = $"120000,aires puros,2,1,102,140,true,true,false,true,false-85000,pajas blancas,3,2,149,201,false,true,false,false,false";
+            ICApi api = new ICApi();
 
-            IProperty property1 = new Property(120000,"aires puros",2,1,102,140,true,true,false,true,false);
+            api.SetDepartment("montevideo");
+            api.SetPropertyTypes(new PropertyType[]{PropertyType.Apartamento});
+            api.SetTransactionType(TransactionType.Alquiler);
+            api.SetCitiesAndNeighbourhoods(new string[]{"buceo"});
 
-            IProperty property2 = new Property(85000,"pajas blancas",3,2,149,201,false,true,false,false,false);
+            List<IFilter> filters = new List<IFilter>();
 
-            api.Parse(data,mediator,database);
+            DepartmentFilter department = new DepartmentFilter("montevideo");
+            PropertyTypeFilter propertyTypeFilter = new PropertyTypeFilter("apartamento");
+            TransactionTypeFilter transactionTypeFilter = new TransactionTypeFilter("alquiler");
+            NeighbourhoodFilter neighbourhoodFilter = new NeighbourhoodFilter("buceo");
 
-            Assert.AreEqual(database.GetPropertyList()[0].GetPropertyValues().GetHashCode(),property1.GetPropertyValues().GetHashCode());
-            Assert.AreEqual(database.GetPropertyList()[1].GetPropertyValues().GetHashCode(),property2.GetPropertyValues().GetHashCode());
-        }
+            filters.Add(department);
+            filters.Add(propertyTypeFilter);
+            filters.Add(transactionTypeFilter);
+            filters.Add(neighbourhoodFilter);
 
-        [Test]
-        public void TestParseUnaPropiedad()
-        {
-            IMediator mediator = new Mediator();
+            apiCore.AskAPI(filters, 1);
 
-            Database database = new Database(); 
+            List<ICApiSearchResult> apiResult = api.Search();
+            
+            apiCore.Parse(apiResult, 5, "buceo");
 
-            IAPIsSearchEngines api = new APIInfoCasas();
-
-            string data = $"85000,pajas blancas,3,2,149,201,false,true,false,false,false";
-
-            IProperty property2 = new Property(85000,"pajas blancas",3,2,149,201,false,true,false,false,false);
-
-            api.Parse(data,mediator,database);
-
-            Assert.AreEqual(database.GetPropertyList()[0].GetPropertyValues().GetHashCode(),property2.GetPropertyValues().GetHashCode());
+            Assert.IsTrue(database.GetPropertyList().SequenceEqual(database2.GetPropertyList()));
         }
     }
 }
-*/

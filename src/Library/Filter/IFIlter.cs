@@ -13,6 +13,7 @@ namespace Library
         /// para su cambio, cuando se modifican sus atributos.
         /// </summary>
         /// <returns></returns>
+        
         string Value { get; }
     }
 }

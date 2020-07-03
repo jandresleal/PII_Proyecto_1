@@ -20,8 +20,8 @@ namespace Library
 
         void Run();
 
-        void ReadUserInput(long ID, string response);
+        void ReadUserInput(long id, string response);
 
-        void SendTextToUser(long ID, string input);
+        void SendTextToUser(long id, string input);
     }
 }
