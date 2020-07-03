@@ -7,12 +7,12 @@ namespace Library
     public class PrintFormatter : IPrintFormatter
     {
         /// <summary>
-        /// Esta clase tiene una única (pero gran) responsabilidad que es realizar
-        /// el formateo del mensaje final que llegará al usuario.
+        /// Esta clase implementa la interfaz IPrintFormatter, tiene una única (pero gran) responsabilidad
+        /// que es realizar el formateo del mensaje final que llegará al usuario.
         /// Esta clase recibe la información necesaria para crear el resultado
-        /// esperado por el usuario. Es experta en esta información y su única 
-        /// responsabilidad es realizar esta acción.
-        /// Se respeta el principio SRP y también se sigue el patrón Expert.
+        /// esperado por el usuario. Es por esto que no es experta en dicha información porque la misma se
+        /// recibe por paramentro, por ende, no cumple con el patrón Expert, pero si con el principio SRP,
+        /// su única responsabilidad es la mencionada anteriormente.
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>

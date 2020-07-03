@@ -4,6 +4,12 @@ namespace Library
 {
     public class ConsoleChannel : IChannelAdapter
     {
+        /// <summary>
+        /// Esta clase representa al bot de la consola, se encarga de ejecutar el bot. 
+        /// 
+        /// Tiene dos responsabilidades, por un lado leer de consola las entradas del usuario y por otro, 
+        /// brindar la respuesta del core por consola.
+        /// </summary>
         public void Run()
         {
             while (true)

@@ -5,8 +5,8 @@ namespace Library
 {
     public class Mediator : IMediator
     {
-        /// <summary>
-        /// Es la clase encargada de implementar el Mediator
+         /// <summary>
+        /// Es la clase impleneta la interfaz IMediator
         /// Explicamos las razones de su uso en la interfaz IMediator
         /// </summary>
         /// <param name=></param>

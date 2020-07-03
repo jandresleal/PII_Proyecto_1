@@ -10,7 +10,7 @@ namespace Library
         /// sean necesarios para el caso.
 
         /// Cada filtro, respeta SRP dado que tiene una única razón
-        /// para su cambio, cuando se modifican sus atributos.
+        /// para su cambio, esta es, cuando se modifican sus atributos.
         /// </summary>
         /// <returns></returns>
         

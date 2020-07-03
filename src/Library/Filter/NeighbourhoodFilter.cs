@@ -5,11 +5,10 @@ namespace Library
     public class NeighbourhoodFilter : IFilter
     {
         /// <summary>
-        /// Filtro independiente creado únicamente para Neighbourhood
-        
-        /// Cada filtro, respeta SRP dado que tiene una única razón
-        /// para su cambio, cuando se modifican sus atributos.
+        /// Esta clase implementa la interfaz IFilter, tiene como única responsabilidad almacenar
+        /// el filtro correspondiente al barrio, por ende, cumple con el principio SRP.
         /// </summary>
+        /// <value></value>
         
         public string Value { get; }
 

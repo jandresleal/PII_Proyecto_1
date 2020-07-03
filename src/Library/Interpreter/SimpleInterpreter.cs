@@ -14,8 +14,8 @@ namespace Library
         public SimpleInterpreter() { }
         /// <summary>
         /// El método ParseInput se encarga de interpretar el texto y fijarse si encuentra los diferentes filtros.
-        /// En caso de no encontrar ningún filtro le pide al usario otro ingreso mediante Mediator; si encuentra algun filtro llama a Mediator para
-        /// realizar la búsqueda
+        /// En caso de no encontrar ningún filtro le pide al usario otro ingreso mediante Mediator;
+        /// si encuentra algun filtro llama a Mediator para realizar la búsqueda
         /// </summary>
         /// <param name="input"> string que recibe por parámetro</param>
         /// <param name="database"></param>

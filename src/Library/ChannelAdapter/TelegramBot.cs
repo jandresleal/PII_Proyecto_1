@@ -12,7 +12,10 @@ namespace Library
     public class TelegramBot : IChannelAdapter
     {
         /// <summary>
-        /// La instancia del bot.
+        /// Esta clase representa al bot de Telegram, se encarga de ejecutar el bot. 
+        /// 
+        /// Tiene dos responsabilidades, por un lado leer de consola las entradas del usuario y por otro, 
+        /// brindar la respuesta del core mediante Telegram.
         /// </summary>
         private static TelegramBotClient Bot;
 
