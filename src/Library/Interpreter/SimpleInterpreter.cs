@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Library
 {
@@ -61,7 +62,7 @@ namespace Library
 
                     case Status.WaitingTransactionType:
 
-                        if(input.Replace(" ", "") == "1")
+                        if(this.WithoutAccents(input).Replace(" ", "") == "1")
                         {
                             transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "alquiler", id));
                             
@@ -69,7 +70,7 @@ namespace Library
 
                             SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Ingrese el departamento por favor.");
                         }
-                        else if (input.Replace(" ", "") == "2")
+                        else if (this.WithoutAccents(input).Replace(" ", "") == "2")
                         {
                             transactionTypeHandler.Handle(new InterpreterMessage (Type.Transaction, "compra", id));
                         
@@ -88,7 +89,7 @@ namespace Library
 
                         try
                         {
-                            StringBuilder sb = new StringBuilder (input);
+                            StringBuilder sb = new StringBuilder (this.WithoutAccents(input));
 
                             sb.Replace(",", "");
                             sb.Replace(".", "");
@@ -126,7 +127,7 @@ namespace Library
 
                         try
                         {
-                            StringBuilder sb1 = new StringBuilder (input.ToLower());
+                            StringBuilder sb1 = new StringBuilder (this.WithoutAccents(input));
                         
                             sb1.Replace(",", "");
                             sb1.Replace(".", "");
@@ -153,7 +154,7 @@ namespace Library
 
                     case Status.WaitingPropertyType:
 
-                        if(input.Replace(" ", "") == "1")
+                        if(this.WithoutAccents(input).Replace(" ", "") == "1")
                         {
                             transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "casa", id));
                             
@@ -161,7 +162,7 @@ namespace Library
 
                             SingleInstance<Mediator>.GetInstance.Search(id);
                         }
-                        else if (input.Replace(" ", "") == "2")
+                        else if (this.WithoutAccents(input).Replace(" ", "") == "2")
                         {
                             transactionTypeHandler.Handle(new InterpreterMessage (Type.Property, "apartamento", id));
                             
@@ -177,7 +178,7 @@ namespace Library
 
                     case Status.SearchDone:
 
-                        string input2 = input.Replace(" ", "");
+                        string input2 = this.WithoutAccents(input).Replace(" ", "");
 
                         if (input2 == "1")
                         {
@@ -205,9 +206,11 @@ namespace Library
             }
         }
 
-        public void SetState(long id, Status state)
+        private string WithoutAccents(string input)
         {
-            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetState(state);
-        }
+            string wordWithoutAccents = Regex.Replace(input.Normalize(NormalizationForm.FormD), @"[^a-zA-z0-9 ]+", "");
+
+            return wordWithoutAccents;
+        }  
     }
 }

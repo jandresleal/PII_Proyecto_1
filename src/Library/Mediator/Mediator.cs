@@ -102,7 +102,7 @@ namespace Library
 
         public void SetState(long id, Status state)
         {
-            SingleInstance<SimpleInterpreter>.GetInstance.SetState(id, state);
+            SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).SetState(state);
         }
 
         public void SetAPI(long id, IAPIsSearchEngines api)
