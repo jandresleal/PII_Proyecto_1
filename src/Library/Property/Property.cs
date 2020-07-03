@@ -1,3 +1,5 @@
+using System;
+
 namespace Library
 {
     public class Property : IProperty
@@ -44,6 +46,10 @@ namespace Library
         
         public override bool Equals(object obj)
         {
+            if (obj == null)
+            {
+                throw new NullReferenceException();
+            }
             return obj is Property & this.Title == Title & this.Description == Description & this.Price == Price & this.Expenses == Expenses & this.Neighbourhood == Neighbourhood & this.ImagePath == ImagePath & this.ResultPath == ResultPath;
         }
 

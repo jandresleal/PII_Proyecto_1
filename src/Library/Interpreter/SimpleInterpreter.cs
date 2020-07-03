@@ -185,7 +185,7 @@ namespace Library
 
                             SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Por favor, ingresa 1 para buscar una propiedad en alquiler o 2 para buscar una propiedad a la venta.");
                         }
-                        else if (input2 == "chau" | input2 == "chauu" | input2 == "nos vemos" | input2 == "nos vemos!" | input2 == "muchas gracias!" | input2 == "muchas gracias" | input2 == "gracias" | input2 == "gracias!")
+                        else if (input == "chau" | input == "chauu" | input == "nos vemos" | input == "nos vemos!" | input == "muchas gracias!" | input == "muchas gracias" | input == "gracias" | input == "gracias!")
                         {
                             SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Muchas gracias por la visita!");
 

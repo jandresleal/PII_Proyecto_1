@@ -19,7 +19,7 @@ namespace Library
         
         public PrintFormatter() {  }
 
-        public void FormatMessage(List<IProperty> data, long id) 
+        public string FormatMessage(List<IProperty> data, long id) 
         {
             string result = string.Empty;
 
@@ -90,6 +90,8 @@ namespace Library
             SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Si desea realizar una nueva búsqueda, digite 1, de lo contrario, muchas gracias!");
 
             SingleInstance<Mediator>.GetInstance.SetState(id, Status.SearchDone);
+
+            return result;
         }
 
         public bool PathContainsHttp (string input)

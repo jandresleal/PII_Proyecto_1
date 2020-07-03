@@ -1,7 +1,4 @@
-/*
-
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 
 namespace Library.Test
@@ -10,6 +7,13 @@ namespace Library.Test
     {
         /// <summary>
         /// Tests para PrintFormatter
+        /// Hay que destacar que PrintFormatter devuelve un string solo para que sea testeable
+        /// pero queremos aclarar que este no es lo que se le va enviando al usuario.
+        /// Las llamadas al mediator para enviar información al usuario se hacen
+        /// por cada property que se va instanciando para que al usuario le lleguen
+        /// mensajes completos de cada propiedad. Esto se realizó dado que telegram
+        /// no te deja enviar un mensaje muy grande ni muchas fotos en el mismo mensaje
+        /// (al menos no nos dejó a nosotros)
         /// </summary>
         [Test]
         public void TestFormatMessageVacio()
@@ -18,9 +22,7 @@ namespace Library.Test
 
             List<IProperty> properties = new List<IProperty>();
 
-            string result = "No se encontraron propiedades que satisfagan la búsqueda.";
-
-            Assert.AreEqual(printFormatter.FormatMessage(properties),result);
+            Assert.AreEqual(printFormatter.FormatMessage(properties, 1), string.Empty);
         }
 
         [Test]
@@ -30,17 +32,13 @@ namespace Library.Test
 
             List<IProperty> properties = new List<IProperty>();
 
-            IProperty property = new Property(85000,"pajas blancas",3,2,149,201,false,true,false,false,false);
+            IProperty property = new Property("Casa en la playa", "Hermosa casa", "$500", "$10", "Buceo", "infocasas", "infocasas");
 
             properties.Add(property);
 
-            string result = "Se listan las propiedades a continuación" + Environment.NewLine;
+            string result = "https://infocasas.com.uyinfocasas\r\ninfocasas\r\nCasa en la playa Hermosa casa Se encuentra en el barrio Buceo y su precio es de $500 Tiene unos gastos fijos mensuales de $10.";
 
-            result += $"La propiedad se encuentra en el barrio {property.Neighbourhood} y cuenta con: {property.Rooms} dormitorios, {property.Baths} baños, cuenta con {property.HabitableArea} metros cuadrados construidos y su terreno consiste de {property.Area} metros cuadradros.";
-
-            result += " Además, presenta un jardín ideal para unas tardes tomando mate.";
-
-            Assert.AreEqual(printFormatter.FormatMessage(properties), result);
+            Assert.AreEqual(printFormatter.FormatMessage(properties, 1), result);
         }
 
         [Test]
@@ -50,33 +48,48 @@ namespace Library.Test
 
             List<IProperty> properties = new List<IProperty>();
 
-            IProperty property1 = new Property(85000,"pajas blancas",3,2,149,201,false,true,false,false,false);
-
-            IProperty property2 = new Property(120000,"aires puros",2,1,102,140,true,true,false,true,false);
+            IProperty property1 = new Property("Bienvenido a la playa", "Hermosa vida", "$900", "$10", "Carrasco", "infocasas", "infocasas");
+            IProperty property2 = new Property("Apartamento en la playa", "Hermoso apartamento", "$800", "$10", "Buceo", "infocasas", "infocasas");
+            IProperty property3 = new Property("Casa en la playa", "Hermosa casa", "$500", "$10", "Pajas Blancas", "infocasas", "infocasas");
 
             properties.Add(property1);
-
             properties.Add(property2);
+            properties.Add(property3);
 
-            string result = "Se listan las propiedades a continuación" + Environment.NewLine;
+            string result = "https://infocasas.com.uyinfocasas\r\ninfocasas\r\nCasa en la playa Hermosa casa Se encuentra en el barrio Pajas Blancas y su precio es de $500 Tiene unos gastos fijos mensuales de $10.";
 
-            result += $"La propiedad se encuentra en el barrio {property1.Neighbourhood} y cuenta con: {property1.Rooms} dormitorios, {property1.Baths} baños, cuenta con {property1.HabitableArea} metros cuadrados construidos y su terreno consiste de {property1.Area} metros cuadradros.";
+            Assert.AreEqual(printFormatter.FormatMessage(properties, 1), result);
+        }
 
-            result += " Además, presenta un jardín ideal para unas tardes tomando mate.";
+        [Test]
+        public void TestPathContainsHttp()
+        {
+            PrintFormatter printFormatter = new PrintFormatter();
 
-            result += Environment.NewLine;
+            string path = "https://infocasas.com.uyinfocasas\r\ninfocasas";
 
-            result += $"La propiedad se encuentra en el barrio {property2.Neighbourhood} y cuenta con: {property2.Rooms} dormitorios, {property2.Baths} baños, cuenta con {property2.HabitableArea} metros cuadrados construidos y su terreno consiste de {property2.Area} metros cuadradros.";
+            Assert.IsTrue(printFormatter.PathContainsHttp(path));
+        }
 
-            result += " Para su comodidad, la propiedad incluye garaje.";
+        [Test]
+        public void TestPathNotContainsHttp()
+        {
+            PrintFormatter printFormatter = new PrintFormatter();
 
-            result += " A su vez, esta propiedad cuenta con barbacoa.";
+            string path = "hola!";
 
-            result += " Además, presenta un jardín ideal para unas tardes tomando mate.";
+            Assert.IsFalse(printFormatter.PathContainsHttp(path));
+        }
 
-            Assert.AreEqual(printFormatter.FormatMessage(properties), result);
+        [Test]
+        public void TestVariableReplace()
+        {
+            PrintFormatter printFormatter = new PrintFormatter();
+
+            string input = "hola!";
+            string toReplace = "!";
+
+            Assert.AreEqual(printFormatter.VariableReplace(input, toReplace), "hola");
         }
     }
 }
-
-*/
