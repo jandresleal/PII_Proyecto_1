@@ -10,10 +10,10 @@ namespace Library
         /// para no verse afectados por la expansión de las integraciones ni por cambios
         /// en las APIs.
         ///
-        /// Este elemento busca ser un Expert en el manejo de las APIs para comunicarse
-        /// con el Mediator, y tener una única razón de cambio, siguiendo SRP. 
+        /// Esta interfaz respeta el principio SRP, tiene una única razón de cambio, esta sería
+        /// que cambiara la forma en la que se integran las APIs.
         /// Permite además la expansión a diferentes APIs aplicando el principio polymorphic,
-        /// ya que es independiente de ellas, y permitiría que se cumpla LSP ya que las APIs no
+        /// ya que es independiente de ellas, y permite que se cumpla LSP ya que las APIs no
         /// deberían interferir entre sí, alterando los resultados esperados.
         /// </summary>
         /// <param name="filters"></param>

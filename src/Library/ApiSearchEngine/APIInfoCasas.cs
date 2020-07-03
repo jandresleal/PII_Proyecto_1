@@ -8,15 +8,15 @@ namespace Library
         public APIInfoCasas() {  }
 
         /// <summary>
-        /// Esta clase es la encargada de comunicarse con la API de InfoCasas con el
-        /// fin de obtener la lista de propiedades a instanciar y posteriormente
-        /// mostrar al usuario que realizó la búsqueda.
+        /// Esta clase implementa la interfaz IAPIsSearchEngines, es la encargada de comunicarse con la API de
+        /// InfoCasas con el fin de obtener la lista de propiedades a instanciar y posteriormente
+        /// mostrarlas al usuario que realizó la búsqueda.
         /// 
-        /// Este elemento busca ser un Expert en el manejo de las APIs para comunicarse
-        /// con el Mediator, y tener una única razón de cambio, siguiendo SRP. 
+        /// Esta interfaz respeta el principio SRP, tiene una única razón de cambio, esta sería
+        /// que cambiara la forma en la que se integran las APIs.
         /// Permite además la expansión a diferentes APIs aplicando el principio polymorphic,
-        /// ya que es independiente de ellas, y permitiría que se cumpla LSP ya que las APIs no
-        /// deberían interferir entre sí, alterando los resultados esperados. 
+        /// ya que es independiente de ellas, y permite que se cumpla LSP ya que las APIs no
+        /// deberían interferir entre sí, alterando los resultados esperados.
         /// </summary>
         /// <param name="filters"></param>
         /// <returns></returns>
@@ -71,8 +71,13 @@ namespace Library
             this.Parse(results, id, barrio);
         }
 
-        // el método parse a continuación es llamado por el mediator y
-        // en la práctica recibe el string retornado por la API
+        /// <summary>
+        /// Este método no se impleneta desde una interfaz dado que necesita recibir como parámetro un tipo
+        /// específico de la API en cuestión, lo que provocaría un problema si implementamos otra API.
+        /// </summary>
+        /// <param name="results">Lista de objetos instanciados por la API</param>
+        /// <param name="id">ID del usuario</param>
+        /// <param name="barrio"></param>
         public void Parse(List<ICApiSearchResult> results, long id, string barrio)
         {
             foreach (ICApiSearchResult result in results)
