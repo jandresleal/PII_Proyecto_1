@@ -23,8 +23,6 @@ namespace Library
         {
             string result = string.Empty;
 
-            Database db = SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id);
-
             if (data.Count > 0)
             {
                 SingleInstance<Mediator>.GetInstance.SendInfoToAdapter(id, "Se listan las propiedades a continuación:");

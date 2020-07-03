@@ -21,8 +21,14 @@ namespace Library
 
         void Search(long id);
 
-        void CreateTextToPrint(IPrintFormatter formatter, long id);
+        void CreateTextToPrint(long id);
 
         void SendInfoToAdapter(long id, string input);
+
+        void SetAPI(long id, IAPIsSearchEngines api);
+
+        void SetAdapter(long id, IChannelAdapter adapter);
+
+        void ToInterpreter(long id, string input);
     }
 }

@@ -53,11 +53,11 @@ namespace Library
             } 
         }
 
-        public void CreateTextToPrint(IPrintFormatter formatter, long id)
+        public void CreateTextToPrint(long id)
         {
             try
             {  
-                formatter.FormatMessage(SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).GetPropertyList(), id);
+                SingleInstance<PrintFormatter>.GetInstance.FormatMessage(SingleInstance<DatabaseMap>.GetInstance.GetDatabaseInstance(id).GetPropertyList(), id);
             }
             catch (Exception e)
             {

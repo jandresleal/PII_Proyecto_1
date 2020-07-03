@@ -41,5 +41,17 @@ namespace Library
             this.ImagePath = imagePath;
             this.ResultPath = resultPath;
         }
+        
+        public override bool Equals(object obj)
+        {
+            return obj is Property & this.Title == Title & this.Description == Description & this.Price == Price & this.Expenses == Expenses & this.Neighbourhood == Neighbourhood & this.ImagePath == ImagePath & this.ResultPath == ResultPath;
+        }
+
+        public override int GetHashCode()
+        {
+            string x = this.Title + this.Description + this.Price + this.Expenses + this.Neighbourhood + this.ImagePath + this.ResultPath;
+
+            return x.GetHashCode();
+        }
     }
 }

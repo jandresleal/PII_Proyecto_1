@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using PII_ICApi;
 
@@ -85,7 +84,6 @@ namespace Library
             }
 
             SingleInstance<Mediator>.GetInstance.CreateTextToPrint(
-                SingleInstance<PrintFormatter>.GetInstance,
                 id
             );
         }
